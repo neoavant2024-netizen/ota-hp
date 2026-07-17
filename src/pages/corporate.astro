@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+const desc = '会社・学校・行政・地域団体向けの法人クリーニング。ユニフォーム・制服・作業着の定期クリーニング、催事用品、飲食・宿泊のリネンまで。数量・頻度に応じたお見積りを承ります。';
+---
+<Base title="法人・団体のお客様" description={desc} current="corporate">
+<main>
+  <PageHero
+    media="/images/laundry-fold.jpg"
+    alt="仕分け・整理されたクリーニング品"
+    crumb="法人・団体のお客様"
+    kana="BUSINESS"
+    title="会社・学校・行政・地域の“まとまった品”、承ります"
+    sub="ユニフォームや制服、催事で使う品々の定期・大量クリーニング。地域に工場を構えるホワイト急便太田が、数量・頻度・納期に合わせて最適なプランをご提案します。"
+  />
+
+  <!-- use cases -->
+  <section class="band" style="padding-top:clamp(40px,7vw,90px)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">対応できること</span>
+        <h2>こんな“まとめて”に、お応えします</h2>
+        <p>継続的な制服管理から、時期の決まった催事まで。事業や団体の規模を問わずご相談ください。</p>
+      </div>
+      <div class="grid-2" style="margin-top:52px">
+        <div class="card reveal"><div class="ic" aria-hidden="true">🦺</div><h3>ユニフォーム・作業着</h3><p>工場・企業・店舗の制服や作業着を、定期クリーニングで清潔に。従業員の身だしなみと衛生を支えます。</p></div>
+        <div class="card reveal"><div class="ic" aria-hidden="true">🎓</div><h3>学校・行政の制服・備品</h3><p>学校の制服・体操着、公共施設の備品などをまとめて対応。地域の団体様の実績もございます。</p></div>
+        <div class="card reveal"><div class="ic" aria-hidden="true">🎪</div><h3>催事・イベント用品</h3><p>地域の催事やイベントで使う法被・のぼり・備品などを、必要な時期に合わせてご用意します。</p></div>
+        <div class="card reveal"><div class="ic" aria-hidden="true">🏨</div><h3>リネン・大物</h3><p>飲食店・宿泊施設のリネン類、マット、大物洗いにも対応。まとまった量も自社工場で処理します。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- target -->
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="biz-grid">
+        <div class="biz-panel reveal">
+          <h2>まずは、お見積りから</h2>
+          <p>「毎週◯着のユニフォームを」「イベントで使う品を短納期で」——ご要望に合わせて、専任窓口が数量・頻度・納期をふまえたお見積りをお出しします。回収・納品のご相談も可能です。</p>
+          <a class="btn" href="/contact/">お見積り・ご相談はこちら<span class="arw">→</span></a>
+        </div>
+        <div>
+          <div class="sec-head reveal">
+            <span class="eyebrow">こんな団体様に</span>
+            <h2 style="font-size:clamp(1.4rem,3vw,2rem)">会社・学校・行政・地域まで</h2>
+          </div>
+          <div class="factories reveal" style="margin-top:22px">
+            <span class="f">製造・工場</span><span class="f">建設・設備</span><span class="f">飲食・宿泊</span>
+            <span class="f">医療・介護</span><span class="f">学校・教育</span><span class="f">官公庁・行政</span>
+            <span class="f">自治会・地域団体</span><span class="f">小売・サービス</span>
+          </div>
+          <p class="lead-block reveal">上記は一例です。数量や頻度が少ない場合でもご相談いただけます。地域に根ざした工場網だからこそ、回収・納品の小回りが利きます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- flow -->
+  <section class="band" style="background:linear-gradient(180deg,#fff,var(--ground))">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">ご利用の流れ</span>
+        <h2>ご相談から、継続運用まで</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><h3>お問い合わせ</h3><p>フォームまたはお電話で、品目・数量・頻度をお知らせください。</p></div>
+        <div class="step reveal"><h3>お見積り</h3><p>ご要望をふまえ、専任窓口が最適なプランとお見積りをご提示します。</p></div>
+        <div class="step reveal"><h3>回収・クリーニング</h3><p>回収・納品方法を調整し、自社工場で品質を確認しながら処理します。</p></div>
+        <div class="step reveal"><h3>継続運用</h3><p>定期便として、無理のないサイクルで清潔を維持します。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band contact">
+    <div class="wrap">
+      <span class="eyebrow light reveal" style="justify-content:center">法人窓口 / FOR BUSINESS</span>
+      <h2 class="reveal" style="margin-top:18px">法人・団体のお見積りは、こちらから</h2>
+      <p class="reveal">数量・頻度・納期など、わかる範囲でお知らせください。折り返し、担当よりご連絡いたします。</p>
+      <div class="contact-actions reveal">
+        <a class="btn" href="/contact/">お見積りフォーム<span class="arw">→</span></a>
+      </div>
+      <div class="contact-tel reveal">
+        <small>本部事務所（平日 8:00 - 17:00）</small>
+        <b>0276-52-7027</b>
+      </div>
+    </div>
+  </section>
+</main>
+</Base>

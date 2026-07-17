@@ -1,0 +1,69 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { areas, SHOP_SEARCH } from '../../data/stores';
+
+const desc = '群馬・埼玉北部・足利のホワイト急便太田 店舗・工場案内。6つの営業エリアごとに、担当工場と営業店の営業時間・住所・電話をご案内しています。';
+const totalShops = areas.reduce((n, a) => n + a.shops.length, 0);
+---
+<Base title="店舗・工場案内" description={desc} current="stores">
+<main>
+  <PageHero
+    media="/images/coin.jpg"
+    alt="コインランドリーの設備"
+    crumb="店舗・工場案内"
+    kana="NETWORK"
+    title="群馬・埼玉北部・足利を、まるごとカバー"
+    sub="6つの営業エリアに、取次店・ショッピングセンターのテナント・コインランドリーを展開。各エリアの詳細から、担当工場と営業店の一覧をご覧いただけます。"
+  />
+
+  <!-- エリア一覧 -->
+  <section class="band" style="padding-top:clamp(40px,7vw,80px)">
+    <div class="wrap">
+      <span class="vlabel">NETWORK</span>
+      <div class="sec-head reveal">
+        <span class="eyebrow">営業エリア</span>
+        <h2>エリアを選んで、店舗を探す</h2>
+        <p>各エリアの「詳細を見る」から、担当工場のご紹介と営業店一覧（営業時間・住所・電話）をご覧いただけます。</p>
+      </div>
+
+      <div class="areas-grid" style="margin-top:52px">
+        {areas.map((a) => (
+          <a class="area area-link reveal" href={`/stores/${a.key}/`}>
+            <div class="h"><h3>{a.name}</h3><span>{a.code}</span></div>
+            <p>{a.cities.map((c) => c.n).join('・')}</p>
+            <div class="area-meta">
+              {a.factory && <span class="f">{a.factory.name}</span>}
+              <span class="area-count">{a.shops.length > 0 ? `営業店 ${a.shops.length}店` : '準備中'}</span>
+            </div>
+            <span class="area-go">詳細を見る<span class="arw">→</span></span>
+          </a>
+        ))}
+      </div>
+
+      <p class="note reveal" style="margin-top:24px;font-size:.82rem;color:var(--ink-faint)">
+        ※ 掲載は{totalShops}店舗（{new Date().getFullYear()}年時点）。店舗の新設・閉店・営業時間の変更がある場合があります。最新情報は
+        <a href={SHOP_SEARCH} target="_blank" rel="noopener" style="color:var(--brand-deep);font-weight:700">ホワイト急便公式サイトの店舗検索</a>もあわせてご確認ください。
+      </p>
+    </div>
+  </section>
+
+  <!-- 店舗検索（本部サイトへ） -->
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="shopsearch reveal">
+        <h2>住所や現在地から探す</h2>
+        <p>ホワイト急便公式サイトの店舗検索では、住所・店舗名・現在地からお近くの店舗をお探しいただけます。</p>
+        <div class="pref-links">
+          <a class="ext" href={`${SHOP_SEARCH}?pre=gunma`} target="_blank" rel="noopener">群馬県の店舗</a>
+          <a class="ext" href={`${SHOP_SEARCH}?pre=saitama`} target="_blank" rel="noopener">埼玉県の店舗</a>
+          <a class="ext" href={`${SHOP_SEARCH}?pre=tochigi`} target="_blank" rel="noopener">栃木県の店舗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand heading="お近くの店舗が見つからないときは、お電話で" text="ご希望のエリア・お品物をお伝えいただければ、最寄りの店舗をご案内します。" />
+</main>
+</Base>

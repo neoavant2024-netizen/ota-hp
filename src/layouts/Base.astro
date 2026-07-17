@@ -1,0 +1,87 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ClientRouter } from 'astro:transitions';
+import '../styles/global.css';
+
+const {
+  title,
+  description = '群馬・埼玉北部・足利のクリーニングなら、創業50余年・従業員170名のホワイト急便太田。日常の衣類から、ハイクラス・極み洗いのプレミアム仕上げ、法人・団体のユニフォーム・催事まで承ります。',
+  current = '',
+  ogType = 'website',
+} = Astro.props;
+
+const siteName = 'ホワイト急便 太田（株式会社ホワイト急便太田）';
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.white-ota.co.jp').href;
+const fullTitle = title ? `${title}｜${siteName}` : siteName;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'DryCleaningOrLaundry',
+  name: '株式会社ホワイト急便太田',
+  alternateName: 'ホワイト急便 太田',
+  url: 'https://www.white-ota.co.jp/',
+  telephone: '+81-276-52-7027',
+  email: 'info@white-ota.co.jp',
+  foundingDate: '1972',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    postalCode: '373-0813',
+    addressRegion: '群馬県',
+    addressLocality: '太田市',
+    streetAddress: '藤阿久町610-1',
+    addressCountry: 'JP',
+  },
+  areaServed: ['群馬県', '埼玉県北部', '栃木県足利市'],
+  memberOf: { '@type': 'Organization', name: '日本さわやかグループ' },
+  numberOfEmployees: { '@type': 'QuantitativeValue', value: 170 },
+};
+---
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script is:inline>
+    // モーションが許可されている時だけアニメの初期非表示を有効化（JS無効時は全表示のまま）
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('anim');
+      // 保険：モーションJSが読み込まれなかった場合、一定時間後に全要素を表示する
+      window.__revealFailsafe = setTimeout(function () {
+        document.querySelectorAll('.reveal, .clip').forEach(function (e) { e.classList.add('in'); });
+        document.querySelectorAll('[data-ln]').forEach(function (e) { e.classList.add('rise'); });
+      }, 2600);
+    }
+  </script>
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta name="theme-color" content="#1B45D0" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <meta property="og:type" content={ogType} />
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:locale" content="ja_JP" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <ClientRouter />
+</head>
+<body>
+  <Header current={current} />
+  <slot />
+  <Footer />
+
+  <script>
+    import '../scripts/site.js';
+  </script>
+</body>
+</html>

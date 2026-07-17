@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+const desc = 'ホワイト急便太田へのお問い合わせ。個人のお客様のご相談、法人・団体のお見積り、採用へのご応募まで。お電話・メール・お問い合わせフォームで承ります。';
+---
+<Base title="お問い合わせ" description={desc} current="contact">
+<main>
+  <PageHero
+    crumb="お問い合わせ"
+    kana="CONTACT"
+    title="お気軽に、ご相談ください"
+    sub="個人のお客様のご相談、法人・団体のお見積り、採用へのご応募まで。ご用件に合わせて、下記よりお問い合わせください。"
+  />
+
+  <!-- contact methods -->
+  <section class="band" style="padding-top:clamp(40px,7vw,90px);padding-bottom:0">
+    <div class="wrap">
+      <div class="contact-methods">
+        <div class="cm reveal">
+          <div class="eyebrow" style="justify-content:center">お電話</div>
+          <div class="big">0276-52-7027</div>
+          <p style="font-size:.82rem;color:var(--ink-soft);margin-top:8px">本部事務所／平日 8:00〜17:00</p>
+        </div>
+        <div class="cm reveal">
+          <div class="eyebrow" style="justify-content:center">メール</div>
+          <div class="big" style="font-size:1.1rem"><a href="mailto:info@white-ota.co.jp">info@white-ota.co.jp</a></div>
+          <p style="font-size:.82rem;color:var(--ink-soft);margin-top:8px">24時間受付／順次ご返信</p>
+        </div>
+        <div class="cm reveal">
+          <div class="eyebrow" style="justify-content:center">店舗</div>
+          <div class="big" style="font-size:1.1rem"><a href="/stores/">店舗・工場案内</a></div>
+          <p style="font-size:.82rem;color:var(--ink-soft);margin-top:8px">お近くの店舗でも承ります</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- form -->
+  <section class="band">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">お問い合わせフォーム</span>
+        <h2>フォームからのお問い合わせ</h2>
+        <p>下記に入力し「送信内容を確認」を押すと、ご利用のメールソフトが立ち上がります。内容をご確認のうえ送信してください。</p>
+      </div>
+      <form class="form reveal" id="contactForm">
+        <div class="field">
+          <label for="type">お問い合わせ種別<span class="req">必須</span></label>
+          <select id="type" name="type" required>
+            <option value="">選択してください</option>
+            <option value="個人のお客様（クリーニング）">個人のお客様（クリーニング）</option>
+            <option value="法人・団体（お見積り）">法人・団体（お見積り）</option>
+            <option value="採用への応募・相談">採用への応募・相談</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="name">お名前 / 会社・団体名<span class="req">必須</span></label>
+          <input id="name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="field">
+          <label for="contact">ご連絡先（電話またはメール）<span class="req">必須</span></label>
+          <input id="contact" name="contact" type="text" required />
+        </div>
+        <div class="field">
+          <label for="message">お問い合わせ内容<span class="req">必須</span></label>
+          <textarea id="message" name="message" rows="6" required placeholder="ご相談内容、品目・数量・ご希望の納期など、わかる範囲でご記入ください。"></textarea>
+        </div>
+        <p class="note">※ 現在はメールソフト連携でのお問い合わせです。サーバへの直接送信フォーム（自動返信つき）は、公開先の確定後に設定します。</p>
+        <div><button class="btn btn-primary" type="submit">送信内容を確認<span class="arw">→</span></button></div>
+      </form>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function(){
+      var f = document.getElementById("contactForm");
+      if(!f) return;
+      f.addEventListener("submit", function(e){
+        e.preventDefault();
+        var type = f.type.value, name = f.name.value, contact = f.contact.value, msg = f.message.value;
+        var subject = "【お問い合わせ】" + (type || "ホワイト急便太田");
+        var body =
+          "お問い合わせ種別：" + type + "\n" +
+          "お名前／会社・団体名：" + name + "\n" +
+          "ご連絡先：" + contact + "\n\n" +
+          "お問い合わせ内容：\n" + msg + "\n";
+        window.location.href = "mailto:info@white-ota.co.jp?subject=" +
+          encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+      });
+    })();
+  </script>
+</main>
+</Base>

@@ -1,0 +1,19 @@
+---
+const { heading = 'ご相談は、目的に合わせてお気軽に', text = '個人のお客様の店舗検索、法人・団体のお見積り、採用へのご応募まで。まずはお気軽にご連絡ください。' } = Astro.props;
+---
+<section class="band contact">
+  <div class="wrap">
+    <span class="eyebrow light reveal" style="justify-content:center">お問い合わせ / CONTACT</span>
+    <h2 class="reveal" style="margin-top:18px">{heading}</h2>
+    <p class="reveal">{text}</p>
+    <div class="contact-actions reveal">
+      <a class="btn" href="/stores/">お近くの店舗を探す<span class="arw">→</span></a>
+      <a class="btn line" href="/corporate/">法人・団体のお見積り</a>
+      <a class="btn line" href="/recruit/">採用に応募する</a>
+    </div>
+    <div class="contact-tel reveal">
+      <small>本部事務所（平日 8:00 - 17:00）</small>
+      <b>0276-52-7027</b>
+    </div>
+  </div>
+</section>

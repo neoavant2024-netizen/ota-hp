@@ -1,0 +1,12 @@
+---
+const { title, sub, crumb, kana, media, alt = '' } = Astro.props;
+---
+<section class:list={['page-hero', media && 'has-media']}>
+  {media && <div class="bg"><img src={media} alt={alt} data-parallax fetchpriority="high" /></div>}
+  {kana && <span class="kana" aria-hidden="true">{kana}</span>}
+  <div class="wrap">
+    <p class="crumb"><a href="/">HOME</a> ／ {crumb}</p>
+    <h1 class="reveal">{title}</h1>
+    {sub && <p class="sub reveal">{sub}</p>}
+  </div>
+</section>

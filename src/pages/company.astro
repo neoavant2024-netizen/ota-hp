@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+const desc = '株式会社ホワイト急便太田の会社案内。1972年創業、日本さわやかグループ加盟。従業員170名、5つの自社工場、群馬・埼玉北部・足利をカバーする地域密着のクリーニング企業。';
+---
+<Base title="会社案内" description={desc} current="">
+<main>
+  <PageHero
+    media="/images/hero.jpg"
+    alt="洗い上がりの衣類が並ぶ様子"
+    crumb="会社案内"
+    kana="COMPANY"
+    title="地域とともに、五十余年"
+    sub="1972年の創業以来、群馬・埼玉北部・足利の暮らしと仕事の“きれい”を支えてきました。日本さわやかグループの一員として、確かな品質をお届けします。"
+  />
+
+  <!-- outline -->
+  <section class="band" style="padding-top:clamp(40px,7vw,90px)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">会社概要</span>
+        <h2>ホワイト急便太田について</h2>
+      </div>
+      <dl class="info-table reveal">
+        <div><dt>会社名</dt><dd>株式会社ホワイト急便太田</dd></div>
+        <div><dt>創業 / 設立</dt><dd>1972年 創業／1987年 日本さわやかグループ加盟・法人設立</dd></div>
+        <div><dt>事業内容</dt><dd>クリーニング業（衣類・皮革・布団・特殊品）、コインランドリー運営、法人・団体向けクリーニング</dd></div>
+        <div><dt>本社工場</dt><dd>〒373-0813 群馬県太田市藤阿久町610-1／TEL 0276-31-2092</dd></div>
+        <div><dt>本部事務所</dt><dd>TEL 0276-52-7027（平日 8:00〜17:00）／info@white-ota.co.jp</dd></div>
+        <div><dt>従業員数</dt><dd>170名</dd></div>
+        <div><dt>拠点</dt><dd>クリーニング5工場・ハイクラス専門1工場・皮革専門1ライン・コインランドリー20店舗・営業店 約130店舗</dd></div>
+        <div><dt>商圏</dt><dd>群馬県全域／埼玉県北部／栃木県足利市</dd></div>
+        <div><dt>加盟</dt><dd>日本さわやかグループ（全国約4,500営業店規模のクリーニングネットワーク）</dd></div>
+        <div><dt>関連会社</dt><dd>株式会社立協製作所／株式会社ホワイト急便熊谷</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- history -->
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">沿革</span>
+        <h2>歩んできた道のり</h2>
+      </div>
+      <div class="timeline reveal">
+        <div class="tl"><b>1972</b>創業。地域のクリーニング店として歩みを始める。</div>
+        <div class="tl"><b>1987</b>日本さわやかグループに加盟し、株式会社ホワイト急便太田を設立。</div>
+        <div class="tl"><b>—</b>群馬・埼玉北部・足利へ商圏を拡大。複数の自社工場・専門ラインを整備。</div>
+        <div class="tl"><b>現在</b>従業員170名・5工場・コインランドリー20店舗・営業店約130店舗の体制で、地域の“きれい”を支える。</div>
+      </div>
+      <p class="note reveal" style="margin-top:20px;font-size:.82rem;color:var(--ink-faint)">※ 沿革の年号・出来事は概略です。正式な社史をご共有いただければ、正確な内容に差し替えます。</p>
+    </div>
+  </section>
+
+  <!-- group strength -->
+  <section class="band" style="background:linear-gradient(180deg,#fff,var(--ground))">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">強み</span>
+        <h2>地域密着 × グループの技術</h2>
+      </div>
+      <div class="grid-3" style="margin-top:52px">
+        <div class="card reveal"><div class="ic" aria-hidden="true">🏭</div><h3>自社工場ネットワーク</h3><p>群馬・埼玉に分散配置した5工場と専門ライン。短納期と安定品質を両立します。</p></div>
+        <div class="card reveal"><div class="ic" aria-hidden="true">🤝</div><h3>さわやかグループ</h3><p>全国規模のネットワークが持つ技術とノウハウを、地域のサービスに活かします。</p></div>
+        <div class="card reveal"><div class="ic" aria-hidden="true">📍</div><h3>地域に約130店</h3><p>取次店・SCテナント・コインランドリー。暮らしのすぐそばでご利用いただけます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand />
+</main>
+</Base>

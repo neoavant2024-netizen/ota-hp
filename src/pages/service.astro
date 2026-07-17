@@ -1,0 +1,98 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+const desc = '衣類全般の一般クリーニングから、ダウン・コート、皮革・着物などの特殊品、毛布・こたつ布団・羽毛布団の丸洗い、コインランドリーまで。ホワイト急便太田のサービス一覧。';
+---
+<Base title="サービス一覧" description={desc} current="service">
+<main>
+  <PageHero
+    media="/images/hero.jpg"
+    alt="洗い上がりの白いワイシャツ"
+    crumb="サービス"
+    kana="SERVICE"
+    title="毎日の一着から、大切な一点まで"
+    sub="日常のワイシャツ・スーツから、ダウン・コート、皮革・着物などの特殊品、毛布・布団の丸洗いまで。五つの自社工場のネットワークで、幅広いニーズにお応えします。"
+  />
+
+  <!-- process -->
+  <section class="band" style="padding-top:clamp(40px,7vw,90px)">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">クリーニングの流れ</span>
+        <h2>お預かりから、お渡しまで</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal"><h3>受付・検品</h3><p>店頭でお預かりし、シミやボタンの状態を一点ずつ確認します。</p></div>
+        <div class="step reveal"><h3>洗浄</h3><p>素材と汚れに合わせて、最適な洗い方を選択。専門工場で処理します。</p></div>
+        <div class="step reveal"><h3>仕上げ・検品</h3><p>プレスで整え、仕上がりを再チェック。品質を確認します。</p></div>
+        <div class="step reveal"><h3>お渡し</h3><p>きれいになった品物を店頭でお返しします。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- service details -->
+  <section class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="detail reveal">
+        <div class="txt">
+          <h3>一般クリーニング</h3>
+          <div class="tagrow"><span>ワイシャツ</span><span>スーツ</span><span>ジャケット</span><span>スラックス</span><span>コート</span></div>
+          <p>毎日の装いを、清潔に。ワイシャツやスーツ、ジャケットなど衣類全般を承ります。素材に合わせた仕上げで、着心地のよい状態を保ちます。</p>
+        </div>
+        <div class="fig"><img src="/images/shirts.jpg" alt="仕上がった白いワイシャツ" loading="lazy" /></div>
+      </div>
+
+      <div class="detail rev reveal">
+        <div class="txt">
+          <h3>ダウン・コート</h3>
+          <div class="tagrow"><span>ダウンジャンパー</span><span>コート</span><span>ベスト</span><span>ふんわり加工</span></div>
+          <p>かさばるダウンジャンパーやコートも承ります。オプションの「ふんわり加工」で、ダウン本来のボリュームと暖かさをよみがえらせます。</p>
+        </div>
+        <div class="fig"><img src="/images/laundry-fold.jpg" alt="仕上がった衣類" loading="lazy" /></div>
+      </div>
+
+      <div class="detail reveal">
+        <div class="txt">
+          <h3>皮革・着物・特殊品</h3>
+          <div class="tagrow"><span>革製品</span><span>着物</span><span>礼服</span><span>専門ライン</span></div>
+          <p>取り扱いの難しい革製品や着物、礼服なども専門ラインで対応。安中工場の皮革専用施設で、一点ずつ丁寧に仕上げます。</p>
+        </div>
+        <div class="fig"><img src="/images/leather.jpg" alt="革製品（レザージャケット）" loading="lazy" /></div>
+      </div>
+
+      <div class="detail rev reveal">
+        <div class="txt">
+          <h3>毛布・こたつ布団・羽毛布団</h3>
+          <div class="tagrow"><span>毛布</span><span>こたつ布団</span><span>羽毛布団</span><span>座布団</span></div>
+          <p>大物の丸洗いで、汗やダニ、ホコリをすっきり。シングルもダブルも承ります。季節ごとのセールもぜひご利用ください。</p>
+        </div>
+        <div class="fig"><img src="/images/bedding.jpg" alt="ふんわり仕上げた寝具・タオル" loading="lazy" /></div>
+      </div>
+
+      <div class="detail reveal">
+        <div class="txt">
+          <h3>コインランドリー</h3>
+          <div class="tagrow"><span>群馬・埼玉北部 20店舗</span><span>大型洗濯機</span><span>乾燥機</span></div>
+          <p>群馬・埼玉北部に20店舗を展開。ご自身のペースで、いつでもお洗濯。大型の洗濯機・乾燥機で、布団や毛布もまとめて洗えます。</p>
+        </div>
+        <div class="fig"><img src="/images/coin.jpg" alt="コインランドリーの洗濯機" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- premium teaser -->
+  <section class="band premium">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow dark">プレミアム仕上げ</span>
+        <h2>もっと上質な仕上がりを求める方へ</h2>
+        <p>ハイクラス・極み洗いなど、大切な一着のための特別なメニューもご用意しています。</p>
+      </div>
+      <div class="reveal" style="margin-top:30px"><a class="btn btn-brass" href="/premium/">プレミアム仕上げを見る<span class="arw">→</span></a></div>
+    </div>
+  </section>
+
+  <CtaBand heading="サービスのご相談・店舗検索はこちら" />
+</main>
+</Base>

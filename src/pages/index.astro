@@ -1,0 +1,348 @@
+---
+import Base from '../layouts/Base.astro';
+import { news, featuredSale } from '../data/news';
+import { salePhoto } from '../lib/photos';
+const latest = news.slice(0, 3);
+// チラシ画像：news.ts の image 指定があればそれを、無ければ public/images/sale/ から自動検出
+const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
+---
+<Base title="街の“きれい”を、五十余年｜群馬・埼玉北部のクリーニング" current="home">
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-media">
+      <div class="hero-slide is-active"><img src="/images/hero.jpg" alt="洗い上がりの白いワイシャツが整然と並ぶ様子" fetchpriority="high" /></div>
+      <div class="hero-slide"><img src="/images/laundry-fold.jpg" alt="" loading="lazy" /></div>
+      <div class="hero-slide"><img src="/images/bedding.jpg" alt="" loading="lazy" /></div>
+    </div>
+    <div class="hero-scrim"></div>
+    <canvas id="ripple" aria-hidden="true"></canvas>
+    <div class="hero-inner wrap">
+      <span class="eyebrow hero-eyebrow reveal">群馬 ／ 埼玉北部 ／ 足利 ・ SINCE 1972</span>
+      <h1 class="hero-lead reveal">ご家庭の一着から、企業・学校・地域の催事まで。日本さわやかグループの技術と五つの自社工場で、暮らしの清潔をおあずかりします。</h1>
+      <div class="hero-actions reveal">
+        <a class="btn btn-primary" href="/stores/">お近くの店舗を探す<span class="arw">→</span></a>
+        <a class="btn btn-ghost" href="/corporate/">法人・団体のご相談<span class="arw">→</span></a>
+      </div>
+    </div>
+    <div class="scroll-cue" aria-hidden="true"><i></i>SCROLL</div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap">
+      <div class="stat reveal">
+        <div class="stat-num"><span data-count="1972" data-plain>0</span></div>
+        <div class="stat-label">創業年</div>
+        <div class="stat-sub">五十余年、地域とともに</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num"><span data-count="170">0</span><span class="u">名</span></div>
+        <div class="stat-label">従業員数</div>
+        <div class="stat-sub">地元で働く仲間たち</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num"><span data-count="5">0</span><span class="u">拠点</span></div>
+        <div class="stat-label">自社クリーニング工場</div>
+        <div class="stat-sub">ハイクラス・皮革の専門ライン併設</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num"><span data-count="150">0</span><span class="u">+</span></div>
+        <div class="stat-label">展開店舗</div>
+        <div class="stat-sub">営業店 約130＋コインランドリー20</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SALE FLYER（チラシをそのまま大きく掲載） -->
+  {featuredSale && flyerSrc && (
+    <section class="band flyer-band" style="padding-block:clamp(52px,8vw,96px)">
+      <div class="wrap">
+        <div class="flyer-wrap">
+          <div class="flyer-copy">
+            <span class="flyer-badge reveal">SALE 開催中</span>
+            <h2 class="reveal" style="margin-top:18px">{featuredSale.title}</h2>
+            {featuredSale.body && <p class="reveal">{featuredSale.body}</p>}
+            <div class="reveal">
+              <a class="btn btn-primary" href="/news/">セールの詳細を見る<span class="arw">→</span></a>
+            </div>
+          </div>
+          <div class="reveal">
+            <a class="flyer-shot" href={flyerSrc} target="_blank" rel="noopener">
+              <img src={flyerSrc} alt={featuredSale.imageAlt ?? featuredSale.title} loading="lazy" />
+            </a>
+            <p class="flyer-note">クリックすると拡大表示されます</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- NEWS / SALE -->
+  <section class="band news-band" style="padding-block:clamp(48px,7vw,86px)">
+    <div class="wrap">
+      <div class="news-head reveal">
+        <div class="sec-head" style="gap:14px">
+          <span class="eyebrow pink">お知らせ・セール</span>
+          <h2 style="font-size:clamp(1.5rem,3vw,2.2rem)">季節ごとのセールを開催しています</h2>
+        </div>
+        <a class="btn btn-ghost" href="/news/">一覧を見る<span class="arw">→</span></a>
+      </div>
+      <div class="news-list reveal">
+        {latest.length === 0 ? (
+          <p class="news-empty">現在、お知らせはありません。</p>
+        ) : (
+          latest.map((n) => (
+            <a class="news-item" href="/news/">
+              <span class="news-date">{n.date}</span>
+              <span class:list={['news-tag', n.category === 'お知らせ' && 'info']}>{n.category}</span>
+              <span class="news-title">{n.title}</span>
+              <span class="arw">→</span>
+            </a>
+          ))
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRY TRIO -->
+  <section class="band" id="entry">
+    <div class="wrap">
+      <span class="vlabel">FOR YOU</span>
+      <div class="sec-head reveal">
+        <span class="eyebrow">ご利用の入口</span>
+        <h2>あなたに合った窓口へ</h2>
+        <p>個人のお客様、法人・団体のお客様、そして一緒に働く仲間の募集まで。目的に合わせてご案内します。</p>
+      </div>
+      <div class="entry">
+        <a class="entry-card ec-1 reveal" href="/service/">
+          <span class="bg" aria-hidden="true"><img src="/images/shirts.jpg" alt="" loading="lazy" /></span>
+          <span class="entry-deco" aria-hidden="true">👕</span>
+          <span class="no">01 — PERSONAL</span>
+          <h3>個人のお客様</h3>
+          <p>衣類・スーツ・ダウン・毛布・布団・皮革まで。お近くの店舗で承ります。</p>
+          <span class="go">サービスを見る<span class="arw">→</span></span>
+        </a>
+        <a class="entry-card ec-2 reveal" href="/corporate/">
+          <span class="bg" aria-hidden="true"><img src="/images/laundry-fold.jpg" alt="" loading="lazy" /></span>
+          <span class="entry-deco" aria-hidden="true">🏢</span>
+          <span class="no">02 — BUSINESS</span>
+          <h3>法人・団体のお客様</h3>
+          <p>ユニフォーム・制服・催事用品・リネン。まとめてご相談ください。</p>
+          <span class="go">法人窓口へ<span class="arw">→</span></span>
+        </a>
+        <a class="entry-card ec-3 reveal" href="/recruit/">
+          <span class="bg" aria-hidden="true"></span>
+          <span class="entry-deco" aria-hidden="true">🤝</span>
+          <span class="no">03 — CAREERS</span>
+          <h3>採用情報</h3>
+          <p>未経験歓迎。工場スタッフ・パート受付を募集しています。</p>
+          <span class="go">採用を見る<span class="arw">→</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="band" id="service" style="background:linear-gradient(180deg,var(--ground),#fff)">
+    <div class="wrap">
+      <span class="vlabel">SERVICE</span>
+      <div class="sec-head reveal">
+        <span class="eyebrow">サービス</span>
+        <h2>毎日の一着から、大切な一点まで</h2>
+        <p>ワイシャツやスーツの日常使いから、ダウン・コート、皮革・着物などの特殊品、毛布・布団の丸洗いまで。幅広いニーズにお応えします。</p>
+      </div>
+      <div class="svc-wrap">
+        <div class="svc-list reveal">
+          <a class="svc-item" href="/service/">
+            <span class="idx">01</span>
+            <div><h3>一般クリーニング</h3><p>ワイシャツ・スーツ・ジャケット・スラックスなど衣類全般</p></div>
+            <span class="chev">→</span>
+          </a>
+          <a class="svc-item" href="/service/">
+            <span class="idx">02</span>
+            <div><h3>ダウン・コート</h3><p>ダウンジャンパー・コート・ベスト。ふんわり加工も承ります</p></div>
+            <span class="chev">→</span>
+          </a>
+          <a class="svc-item" href="/service/">
+            <span class="idx">03</span>
+            <div><h3>皮革・着物・特殊品</h3><p>革製品・着物・礼服など。専門ラインで一点ずつ対応</p></div>
+            <span class="chev">→</span>
+          </a>
+          <a class="svc-item" href="/service/">
+            <span class="idx">04</span>
+            <div><h3>毛布・こたつ布団・羽毛布団</h3><p>大物の丸洗いで、清潔で気持ちのよい眠りへ</p></div>
+            <span class="chev">→</span>
+          </a>
+          <a class="svc-item" href="/service/">
+            <span class="idx">05</span>
+            <div><h3>コインランドリー</h3><p>群馬・埼玉北部に20店舗。いつでもご自身のペースで</p></div>
+            <span class="chev">→</span>
+          </a>
+        </div>
+        <div class="svc-figure reveal">
+          <img src="/images/factory/ota-1.jpg" alt="ホワイト急便太田の店舗外観" loading="lazy" />
+          <div class="cap">地域に広がる店舗ネットワーク<span>群馬・埼玉北部・足利に約150店舗</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PREMIUM -->
+  <section class="band premium" id="premium">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow dark">プレミアム仕上げ</span>
+        <h2>大切な一着に、特別な仕上げを</h2>
+        <p>日常のクリーニングとは一線を画す、上質を求める方のためのメニュー。素材と風合いを守りながら、仕上がりの質を高めます。</p>
+      </div>
+      <div class="prem-grid">
+        <div class="prem-card reveal">
+          <span class="tag">HIGH CLASS</span>
+          <h3>ハイクラス<span class="jp">— 専門工場で一点ずつ、丁寧に</span></h3>
+          <p>ブランド衣料や礼服、思い入れのある一着を、専門の工場で手をかけて仕上げます。型崩れを抑え、生地本来の美しさを引き出します。</p>
+          <ul class="prem-feats"><li>専門工場対応</li><li>手仕上げ</li><li>型崩れ防止</li><li>ブランド衣料</li></ul>
+        </div>
+        <div class="prem-card reveal">
+          <span class="tag">KIWAMI WASH</span>
+          <h3>極み洗い<span class="jp">— 汗・黄ばみ・においまで、徹底的に</span></h3>
+          <p>通常の洗いでは落としきれない汗じみや黄ばみ、においの元にアプローチ。素材への負担を抑えながら、奥までしっかり洗い上げます。</p>
+          <ul class="prem-feats"><li>汗じみ対応</li><li>黄ばみ除去</li><li>消臭</li><li>素材にやさしい</li></ul>
+        </div>
+      </div>
+      <div class="reveal" style="margin-top:36px"><a class="btn btn-brass" href="/premium/">プレミアム仕上げを詳しく<span class="arw">→</span></a></div>
+    </div>
+  </section>
+
+  <!-- CORPORATE -->
+  <section class="band biz" id="biz">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">法人・団体のお客様</span>
+        <h2>会社・学校・行政・地域の“まとまった品”、承ります</h2>
+        <p>ユニフォームや制服、催事で使う品々の定期・大量クリーニング。数量や頻度に合わせて、最適なプランをご提案します。</p>
+      </div>
+      <div class="biz-grid" style="margin-top:52px">
+        <div class="biz-panel reveal">
+          <h2>まずは、お見積りから</h2>
+          <p>「毎週◯着のユニフォームを」「イベントで使う品を短納期で」——ご要望に合わせて、専任窓口が数量・頻度・納期をふまえたお見積りをお出しします。回収・納品のご相談も可能です。</p>
+          <a class="btn" href="/corporate/">法人窓口に相談する<span class="arw">→</span></a>
+        </div>
+        <div class="biz-cases">
+          <div class="biz-case reveal"><div class="ic" aria-hidden="true">🦺</div><h3>ユニフォーム・作業着</h3><p>工場・企業の制服を定期クリーニングで清潔に保ちます。</p></div>
+          <div class="biz-case reveal"><div class="ic" aria-hidden="true">🎓</div><h3>学校・行政の制服</h3><p>学校や公共施設の制服・体操着・備品をまとめて対応。</p></div>
+          <div class="biz-case reveal"><div class="ic" aria-hidden="true">🎪</div><h3>催事・イベント用品</h3><p>地域の催事やイベントで使う品を、必要な時期に合わせて。</p></div>
+          <div class="biz-case reveal"><div class="ic" aria-hidden="true">🏨</div><h3>リネン・大物</h3><p>飲食・宿泊のリネン類、大物洗いにも対応します。</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REASONS -->
+  <section class="band" id="reasons">
+    <div class="wrap">
+      <span class="vlabel">STRENGTH</span>
+      <div class="sec-head reveal">
+        <span class="eyebrow">選ばれる理由</span>
+        <h2>地域に根ざした、確かな品質基盤</h2>
+      </div>
+      <div class="reasons">
+        <div class="reason reveal"><div class="n">01</div><h3>5工場ネットワーク</h3><p>群馬・埼玉に工場を分散配置。設備と物流を活かし、短納期と安定した品質を両立します。</p></div>
+        <div class="reason reveal"><div class="n">02</div><h3>専門ライン</h3><p>ハイクラス専門工場と皮革専門ラインを保有。難しい品物にも一点ずつ丁寧に対応します。</p></div>
+        <div class="reason reveal"><div class="n">03</div><h3>さわやかグループの技術</h3><p>全国4,500店規模の日本さわやかグループ。最新技術と長年のノウハウが品質を支えます。</p></div>
+        <div class="reason reveal"><div class="n">04</div><h3>地域密着 約130店</h3><p>商圏に広がる営業店・取次店・コインランドリー。暮らしのすぐそばでご利用いただけます。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MEDIA BANNER (parallax) -->
+  <section class="mediaband">
+    <div class="bg"><img src="/images/bedding.jpg" alt="" data-parallax loading="lazy" /></div>
+    <div class="wrap">
+      <span class="eyebrow light reveal">OUR PROMISE</span>
+      <h2 class="reveal">洗いたてを、地域の当たり前に</h2>
+      <p class="reveal">ワイシャツ一枚から、企業のユニフォーム、催事の大量品まで。一点ずつ状態を見極め、素材にやさしく、気持ちよく。地域の“きれい”を、五十余年おあずかりしてきました。</p>
+      <a class="btn btn-primary reveal" href="/service/">サービスを見る<span class="arw">→</span></a>
+    </div>
+  </section>
+
+  <!-- RECRUIT -->
+  <section class="band recruit" id="recruit">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow light reveal">採用情報 / RECRUIT</span>
+        <h2 class="reveal">未経験から、長く働ける<br>幅広い年代が活躍しています</h2>
+        <p class="reveal">「地元で無理なく、腰を据えて働きたい」——そんな方にこそ。丁寧な指導があるので、はじめての方も安心してスタートできます。接客が好きな方、手に職をつけたい方を歓迎します。</p>
+        <a class="btn btn-primary reveal" href="/recruit/" style="margin-top:26px">採用情報を見る<span class="arw">→</span></a>
+      </div>
+      <ul class="roles reveal">
+        <li class="role"><div><span class="rn">A</span><h3>パート受付スタッフ</h3><p>経験不問／時間は相談に応じます／接客好きな方歓迎</p></div></li>
+        <li class="role"><div><span class="rn">B</span><h3>工場スタッフ・職人</h3><p>お近くの工場で／未経験可・経験者も同時募集</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- AREAS -->
+  <section class="band" id="areas" style="background:linear-gradient(180deg,#fff,var(--ground))">
+    <div class="wrap">
+      <span class="vlabel">NETWORK</span>
+      <div class="sec-head reveal">
+        <span class="eyebrow">店舗・工場案内</span>
+        <h2>群馬・埼玉北部・足利をカバー</h2>
+        <p>6つの営業エリアに、取次店・ショッピングセンターのテナント・コインランドリーを展開。お近くの店舗をお選びいただけます。</p>
+      </div>
+      <div class="areas-grid">
+        <a class="area reveal" href="/stores/"><div class="h"><h3>太田 第1エリア</h3><span>OTA 1</span></div><p>太田市・館林市・大泉町・邑楽町・足利市</p></a>
+        <a class="area reveal" href="/stores/"><div class="h"><h3>太田 第2エリア</h3><span>OTA 2</span></div><p>太田市・伊勢崎市・玉村町・大泉町・桐生市</p></a>
+        <a class="area reveal" href="/stores/"><div class="h"><h3>前橋エリア</h3><span>MAEBASHI</span></div><p>前橋市・高崎市・沼田市・渋川市・中之条町</p></a>
+        <a class="area reveal" href="/stores/"><div class="h"><h3>行田エリア</h3><span>GYODA</span></div><p>行田市・熊谷市・館林市・板倉町・明和町・千代田町</p></a>
+        <a class="area reveal" href="/stores/"><div class="h"><h3>深谷エリア</h3><span>FUKAYA</span></div><p>深谷市・本庄市・嵐山町・上里町・美里町</p></a>
+        <a class="area reveal" href="/stores/"><div class="h"><h3>安中エリア</h3><span>ANNAKA</span></div><p>安中市・高崎市・富岡市・甘楽町・藤岡市</p></a>
+      </div>
+      <div class="factories reveal">
+        <span class="f">太田本社工場</span>
+        <span class="f">太田第2工場（ハイクラス併設）</span>
+        <span class="f">行田第7工場</span>
+        <span class="f">深谷第9工場</span>
+        <span class="f">安中第10工場（皮革併設）</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QA -->
+  <section class="band" id="qa">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="eyebrow">お役立ち Q&amp;A</span>
+        <h2>クリーニングを、もっと上手に</h2>
+        <p>大切な衣類を長持ちさせるコツを、プロの視点でご紹介。詳しくはお役立ちコラムで。</p>
+      </div>
+      <div class="qa-grid">
+        <div class="qa reveal"><div class="q"><b>Q</b><h3>出す前のチェックは？</h3></div><p>洗濯表示・ポケットの中身・外れやすいボタンや肩パットを確認。上下は必ずセットで出すと仕上がりが均一になります。</p></div>
+        <div class="qa reveal"><div class="q"><b>Q</b><h3>しまう時のコツは？</h3></div><p>仕上がりのビニールは「ほこりよけ」。そのまましまうと湿気でカビの原因に。必ず外して収納してください。</p></div>
+        <div class="qa reveal"><div class="q"><b>Q</b><h3>汚れが落ちにくいのは？</h3></div><p>整髪料・時間の経った汗じみや黄ばみは要注意。汚したら早めのクリーニングが、きれいを保ついちばんの近道です。</p></div>
+      </div>
+      <div class="reveal" style="margin-top:34px"><a class="btn btn-ghost" href="/guide/">お役立ちQ&amp;Aをもっと見る<span class="arw">→</span></a></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="band contact" id="contact">
+    <div class="wrap">
+      <span class="eyebrow light reveal" style="justify-content:center">お問い合わせ / CONTACT</span>
+      <h2 class="reveal" style="margin-top:18px">ご相談は、目的に合わせてお気軽に</h2>
+      <p class="reveal">個人のお客様の店舗検索、法人・団体のお見積り、採用へのご応募まで。まずはお気軽にご連絡ください。</p>
+      <div class="contact-actions reveal">
+        <a class="btn" href="/stores/">お近くの店舗を探す<span class="arw">→</span></a>
+        <a class="btn line" href="/corporate/">法人・団体のお見積り</a>
+        <a class="btn line" href="/recruit/">採用に応募する</a>
+      </div>
+      <div class="contact-tel reveal">
+        <small>本部事務所（平日 8:00 - 17:00）</small>
+        <b>0276-52-7027</b>
+      </div>
+    </div>
+  </section>
+</main>
+</Base>

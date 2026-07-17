@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { faqGroups, allFaqs, faqToText } from '../data/faq';
+
+const desc = 'クリーニングに関するQ&A。出す前のチェック、しまい方、汚れが落ちにくい理由から、汗抜き加工・ハイクラスなどの仕上げメニュー、取り扱い品目、店舗のご利用まで。ホワイト急便太田がお答えします。';
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: allFaqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: faqToText(f) },
+  })),
+};
+---
+<Base title="クリーニングに関する Q&A" description={desc} current="guide">
+<main>
+  <PageHero
+    crumb="クリーニングに関する Q&A"
+    kana="Q&A"
+    title="クリーニングに関する Q&A"
+    sub="大切な衣類を長持ちさせるコツから、仕上げメニュー・取り扱い品目・店舗のご利用まで。長年クリーニングに携わってきたプロの視点でお答えします。"
+  />
+
+  <!-- 目次 -->
+  <section class="band" style="padding-top:clamp(36px,5vw,60px);padding-bottom:0">
+    <div class="wrap" style="max-width:940px">
+      <div class="faq-toc reveal">
+        {faqGroups.map((g) => (
+          <a href={`#${g.key}`}>{g.title}<span class="n">{g.items.length}</span></a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {faqGroups.map((g, gi) => (
+    <section class="band" id={g.key} style={`padding-top:clamp(40px,6vw,72px);padding-bottom:${gi === faqGroups.length - 1 ? 'clamp(56px,8vw,100px)' : '0'}`}>
+      <div class="wrap" style="max-width:940px">
+        <div class="sec-head reveal">
+          <span class="eyebrow">{String(gi + 1).padStart(2, '0')}</span>
+          <h2 style="font-size:clamp(1.5rem,3vw,2.2rem)">{g.title}</h2>
+          <p>{g.lead}</p>
+        </div>
+
+        <div class="faq">
+          {g.items.map((f, i) => (
+            <details open={gi === 0 && i === 0}>
+              <summary>{f.q}<span class="mk" aria-hidden="true">＋</span></summary>
+              <div class="ans">
+                {f.a && <p>{f.a}</p>}
+                {f.list && (
+                  <ol class="faq-list">
+                    {f.list.map((li) => <li>{li}</li>)}
+                  </ol>
+                )}
+                {f.sub && (
+                  <div class="faq-sub">
+                    {f.sub.map((s) => (
+                      <div class="faq-sub-item">
+                        <h4>{s.t}</h4>
+                        <p>{s.d}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                {f.note && <p class="faq-note">{f.note}</p>}
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <CtaBand heading="そのほかのご質問も、お気軽に" text="お品物の状態やご不明点は、お近くの店舗またはお電話でお気軽にご相談ください。" />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</main>
+</Base>

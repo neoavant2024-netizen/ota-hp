@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { news } from '../data/news';
+import { salePhoto } from '../lib/photos';
+
+const desc = 'ホワイト急便太田のお知らせ・セール情報。季節ごとのクリーニングセールや営業に関するご案内を掲載しています。群馬・埼玉北部・足利のクリーニング。';
+---
+<Base title="お知らせ・セール" description={desc} current="news">
+<main>
+  <PageHero
+    crumb="お知らせ・セール"
+    kana="NEWS"
+    title="お知らせ・セール情報"
+    sub="季節ごとのクリーニングセールや、営業に関するご案内を掲載しています。セール内容は店舗により異なる場合がありますので、詳しくはお近くの店舗へお問い合わせください。"
+  />
+
+  <section class="band" style="padding-top:clamp(40px,7vw,90px)">
+    <div class="wrap" style="max-width:900px">
+      {news.length === 0 ? (
+        <p class="news-empty">現在、お知らせはありません。</p>
+      ) : (
+        <div style="display:flex;flex-direction:column;gap:18px">
+          {news.map((n) => (
+            <article class="sale-card reveal">
+              <div class="meta">
+                <span class="news-date">{n.date}</span>
+                <span class:list={['news-tag', n.category === 'お知らせ' && 'info']}>{n.category}</span>
+              </div>
+              <h3>{n.title}</h3>
+              {n.body && <p>{n.body}</p>}
+              {(n.image ?? (n.category === 'セール' && n === news.find((x) => x.category === 'セール') ? salePhoto() : undefined)) && (
+                <a class="flyer-shot" href={n.image ?? salePhoto()} target="_blank" rel="noopener">
+                  <img src={n.image ?? salePhoto()} alt={n.imageAlt ?? n.title} loading="lazy" />
+                </a>
+              )}
+              {n.link && (
+                <p style="margin-top:14px">
+                  <a class="btn btn-ghost" href={n.link} target="_blank" rel="noopener">詳しく見る<span class="arw">→</span></a>
+                </p>
+              )}
+            </article>
+          ))}
+        </div>
+      )}
+      <p class="note" style="margin-top:26px;font-size:.82rem;color:var(--ink-faint)">※ セールの対象品目・価格・実施期間は店舗により異なります。詳しくはお近くの店舗、または本部（0276-52-7027）へお問い合わせください。</p>
+    </div>
+  </section>
+
+  <CtaBand heading="セールの詳細はお近くの店舗へ" text="対象品目や価格は店舗によって異なります。お気軽にお問い合わせください。" />
+</main>
+</Base>
