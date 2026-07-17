@@ -34,6 +34,12 @@
   --pink:#F24EA0;        /* ホワイト急便グループのブランドピンク（塗り・バッジ用の鮮やかさ） */
   --pink-deep:#D62E85;
   --pink-soft:#FDEAF4;
+  /* ロゴに含まれる紺青。ピンクと対になるホワイト急便の第2カラー。
+     ピンクは大見出しとCTAに絞り、細部（ラベル・数字・記号・リンク）はこちらが担う */
+  --navy:#004EA2;       /* 地の上でコントラスト7.4＝本文にも使える */
+  --navy-deep:#123E86;  /* ホバー・引き締め */
+  --navy-soft:#EAF1FA;  /* 淡い青の面 */
+  --navy-light:#9CC6F0; /* 濃い面の上で使う明るい青 */
   --line:rgba(42,27,36,.12);
   --shadow:0 24px 60px -28px rgba(42,27,36,.35);
   --ease:cubic-bezier(.2,.7,.2,1);
@@ -58,13 +64,14 @@ h1,h2,h3,p{margin:0}
 ::selection{background:var(--brand);color:#fff}
 :focus-visible{outline:2px solid var(--brand);outline-offset:3px;border-radius:2px}
 
-/* ---------- 見出しの色：ピンク ----------
-   大見出し（h1/h2）は --brand、カード見出し（h3）は一段濃い --brand-deep。
-   本文は --ink（ダークプラム）のまま残し、ピンク過多になるのを防ぐ。
+/* ---------- 見出しの色：ピンク×紺青 ----------
+   大見出し（h1/h2）はピンク、カード見出し（h3）はロゴの紺青。
+   ピンクを主要見出しとCTAに絞ることで、ピンク一色になるのを防ぐ。
+   本文は --ink（ダークプラム）のまま。
    ただし濃い面の上の見出しは白のまま保つ必要があるため、下で明示的に戻す。
    （色の継承は要素セレクタに負けるので、除外指定は必須）        */
 h1,h2{color:var(--brand)}
-h3{color:var(--brand-deep)}
+h3{color:var(--navy)}
 .stats :is(h1,h2,h3),
 .premium :is(h1,h2,h3),
 .biz-panel :is(h1,h2,h3),
@@ -87,9 +94,9 @@ h1,h2,h3{text-wrap:balance}
 .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(20px,5vw,56px)}
 .eyebrow{
   font-family:var(--lat);font-size:.72rem;font-weight:700;letter-spacing:.26em;
-  text-transform:uppercase;color:var(--brand);display:inline-flex;align-items:center;gap:.7em;
+  text-transform:uppercase;color:var(--navy);display:inline-flex;align-items:center;gap:.7em;
 }
-.eyebrow::before{content:"";width:26px;height:1px;background:var(--brand);display:inline-block}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--navy);display:inline-block}
 .eyebrow.dark{color:var(--brass)}
 .eyebrow.dark::before{background:var(--brass)}
 .eyebrow.light{color:#F0A8CA}
@@ -128,12 +135,19 @@ html.anim .reveal.in{opacity:1;transform:none}
 }
 .brand-name small{display:block;font-size:.58rem;letter-spacing:.14em;color:var(--ink-soft);font-family:var(--lat);font-weight:700;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.brand-logo{transition:none}}
-/* 狭い画面ではロゴ＋社名が電話番号を押し出すため、英字の副題を省く
-   （"WHITE OTA SINCE 1972" だけで142pxを占めるのが原因） */
+/* 狭い画面ではロゴ＋社名が電話番号を押し出して溢れるため、
+   英字の副題を省き、社名を「ホワイト急便 / 太田」の2行に積んで幅を抑える。
+   （社名は必ず出す。フッターには効かせたくないのでヘッダーに限定） */
 @media (max-width:560px){
-  .brand-logo{height:38px}
-  .brand-name{font-size:.95rem;border-left:0;padding-left:0}
-  .brand-name small{display:none}
+  .site-header{gap:10px;padding-left:16px;padding-right:16px}
+  .site-header .brand{gap:9px}
+  .site-header .brand-logo{height:36px}
+  .site-header .brand-name{font-size:.86rem;line-height:1.3;border-left:0;padding-left:0}
+  .site-header .brand-name .bn-g{display:block}
+  .site-header .brand-name small{display:none}
+  /* 右側は電話番号とメニューボタンで削れないので、間隔と文字で詰める */
+  .header-cta{gap:8px}
+  .tel{font-size:.95rem}
 }
 .nav{display:flex;align-items:center;gap:18px}
 .nav a{font-size:.87rem;font-weight:700;color:var(--ink);position:relative;padding:4px 0;white-space:nowrap}
@@ -151,7 +165,7 @@ html.anim .reveal.in{opacity:1;transform:none}
 .btn-primary{background:var(--brand);color:#fff;box-shadow:0 12px 26px -12px rgba(196,37,118,.8)}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 34px -12px rgba(196,37,118,.9)}
 .btn-ghost{border:1.5px solid var(--line);color:var(--ink)}
-.btn-ghost:hover{border-color:var(--brand);color:var(--brand);transform:translateY(-2px)}
+.btn-ghost:hover{border-color:var(--navy);color:var(--navy);transform:translateY(-2px)}
 .btn-brass{background:var(--brass);color:#fff;box-shadow:0 12px 26px -12px rgba(168,124,70,.8)}
 .btn-brass:hover{transform:translateY(-2px)}
 .btn .arw{transition:transform .3s var(--ease)}
@@ -251,11 +265,11 @@ section{position:relative}
 .svc-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:22px;
   padding:26px 6px;border-bottom:1px solid var(--line);transition:background .35s}
 .svc-item:hover{background:rgba(196,37,118,.04)}
-.svc-item .idx{font-family:var(--lat);font-weight:700;color:var(--brand);font-size:.8rem;font-variant-numeric:tabular-nums}
+.svc-item .idx{font-family:var(--lat);font-weight:700;color:var(--navy);font-size:.8rem;font-variant-numeric:tabular-nums}
 .svc-item h3{font-size:1.16rem;font-weight:700}
 .svc-item p{font-size:.86rem;color:var(--ink-soft);margin-top:3px}
 .svc-item .chev{color:var(--ink-faint);transition:transform .3s var(--ease),color .3s}
-.svc-item:hover .chev{transform:translateX(4px);color:var(--brand)}
+.svc-item:hover .chev{transform:translateX(4px);color:var(--navy)}
 .svc-figure{position:sticky;top:100px;border-radius:20px;overflow:hidden;box-shadow:var(--shadow);
   min-height:440px;background:linear-gradient(160deg,#F8DDEB,#E3B9D0);display:flex;align-items:flex-end}
 .svc-figure .ph{position:absolute;inset:0;display:grid;place-items:center;color:#96798A;font-size:.8rem;letter-spacing:.2em}
@@ -320,7 +334,7 @@ section{position:relative}
 .recruit .role{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);
   border-radius:14px;padding:20px 22px;transition:transform .4s var(--ease),background .4s}
 .recruit .role:hover{transform:translateX(6px);background:rgba(255,255,255,.09)}
-.recruit .role .rn{font-family:var(--lat);font-weight:700;color:#E294BC;font-size:.8rem}
+.recruit .role .rn{font-family:var(--lat);font-weight:700;color:var(--navy-light);font-size:.8rem}
 .recruit .role h3{font-size:1.06rem;font-weight:700}
 .recruit .role p{font-size:.8rem;color:#C0A6B2;margin-top:2px}
 .recruit .btn{margin-top:6px}
@@ -328,20 +342,20 @@ section{position:relative}
 /* ---------- areas ---------- */
 .areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
 .area{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:24px 24px;transition:border-color .4s,transform .4s var(--ease)}
-.area:hover{border-color:var(--brand);transform:translateY(-4px)}
+.area:hover{border-color:var(--navy);transform:translateY(-4px)}
 .area .h{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
 .area h3{font-size:1.1rem;font-weight:700}
-.area .h span{font-family:var(--lat);font-size:.7rem;font-weight:700;color:var(--brand);letter-spacing:.14em}
+.area .h span{font-family:var(--lat);font-size:.7rem;font-weight:700;color:var(--navy);letter-spacing:.14em}
 .area p{font-size:.82rem;color:var(--ink-soft);margin-top:10px;line-height:1.8}
 .factories{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px}
-.factories .f{font-size:.78rem;font-weight:700;background:rgba(196,37,118,.07);color:var(--brand-deep);padding:.5em 1em;border-radius:999px;border:1px solid rgba(196,37,118,.14)}
+.factories .f{font-size:.78rem;font-weight:700;background:var(--navy-soft);color:var(--navy-deep);padding:.5em 1em;border-radius:999px;border:1px solid rgba(0,78,162,.16)}
 
 /* ---------- qa ---------- */
 .qa-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
 .qa{background:var(--paper);border-radius:16px;padding:30px 28px;border:1px solid var(--line);transition:transform .4s var(--ease),box-shadow .4s}
 .qa:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
 .qa .q{display:flex;gap:12px;align-items:flex-start}
-.qa .q b{font-family:var(--lat);color:var(--brand);font-size:1.3rem;font-weight:900;line-height:1}
+.qa .q b{font-family:var(--lat);color:var(--navy);font-size:1.3rem;font-weight:900;line-height:1}
 .qa .q h3{font-size:1rem;font-weight:700;line-height:1.5}
 .qa p{font-size:.84rem;color:var(--ink-soft);margin-top:14px}
 
@@ -383,7 +397,7 @@ section{position:relative}
 .page-hero{position:relative;padding:150px 0 60px;background:linear-gradient(180deg,#fff,var(--ground));overflow:hidden}
 .page-hero .wrap{position:relative;z-index:2}
 .page-hero .crumb{font-family:var(--lat);font-size:.72rem;letter-spacing:.16em;color:var(--ink-faint);text-transform:uppercase;margin-bottom:16px}
-.page-hero .crumb a:hover{color:var(--brand)}
+.page-hero .crumb a:hover{color:var(--navy)}
 .page-hero h1{font-size:clamp(2.1rem,5vw,3.6rem);font-weight:900;line-height:1.18;text-wrap:balance}
 .page-hero .sub{margin-top:20px;max-width:56ch;color:var(--ink-soft);font-size:1.05rem}
 .page-hero .kana{position:absolute;right:clamp(-10px,2vw,40px);top:60px;font-family:var(--lat);font-weight:900;
@@ -407,7 +421,7 @@ section{position:relative}
 .detail.rev .txt{order:2}
 .detail h3{font-size:clamp(1.3rem,2.4vw,1.8rem);font-weight:900;line-height:1.35}
 .detail .tagrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.detail .tagrow span{font-size:.76rem;font-weight:700;color:var(--brand-deep);background:rgba(196,37,118,.07);border:1px solid rgba(196,37,118,.14);padding:.35em .8em;border-radius:999px}
+.detail .tagrow span{font-size:.76rem;font-weight:700;color:var(--navy-deep);background:var(--navy-soft);border:1px solid rgba(196,37,118,.14);padding:.35em .8em;border-radius:999px}
 .detail p{color:var(--ink-soft);margin-top:16px;font-size:.96rem}
 
 /* process steps */
@@ -429,7 +443,7 @@ section{position:relative}
 .timeline{margin-top:44px;border-left:2px solid var(--mist);padding-left:28px;display:flex;flex-direction:column;gap:26px}
 .tl{position:relative}
 .tl::before{content:"";position:absolute;left:-35px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 4px var(--ground)}
-.tl b{font-family:var(--lat);color:var(--brand);font-weight:900;font-size:1rem;margin-right:12px}
+.tl b{font-family:var(--lat);color:var(--navy);font-weight:900;font-size:1rem;margin-right:12px}
 
 /* data table (stores) */
 .table-scroll{overflow-x:auto;margin-top:28px;border:1px solid var(--line);border-radius:14px}
@@ -437,7 +451,7 @@ table.stores{width:100%;border-collapse:collapse;font-size:.86rem;min-width:640p
 table.stores th,table.stores td{text-align:left;padding:13px 16px;border-bottom:1px solid var(--line);vertical-align:top}
 table.stores thead th{background:var(--ink);color:#fff;font-weight:700;position:sticky;top:0}
 table.stores tbody tr:hover{background:rgba(196,37,118,.04)}
-table.stores td:last-child{font-family:var(--lat);white-space:nowrap;color:var(--brand-deep);font-weight:700}
+table.stores td:last-child{font-family:var(--lat);white-space:nowrap;color:var(--navy);font-weight:700}
 
 /* faq accordion-ish list */
 .faq{margin-top:44px;display:flex;flex-direction:column;gap:16px}
@@ -445,8 +459,8 @@ table.stores td:last-child{font-family:var(--lat);white-space:nowrap;color:var(-
 .faq details[open]{box-shadow:var(--shadow)}
 .faq summary{list-style:none;cursor:pointer;padding:22px 0;font-weight:700;font-size:1.02rem;display:flex;gap:14px;align-items:flex-start}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::before{content:"Q";font-family:var(--lat);color:var(--brand);font-weight:900;font-size:1.2rem;line-height:1.3}
-.faq summary .mk{margin-left:auto;color:var(--brand);transition:transform .3s var(--ease);font-size:1.2rem}
+.faq summary::before{content:"Q";font-family:var(--lat);color:var(--navy);font-weight:900;font-size:1.2rem;line-height:1.3}
+.faq summary .mk{margin-left:auto;color:var(--navy);transition:transform .3s var(--ease);font-size:1.2rem}
 .faq details[open] summary .mk{transform:rotate(45deg)}
 .faq .ans{padding:0 0 24px 32px;color:var(--ink-soft);font-size:.92rem;line-height:1.9}
 
@@ -456,11 +470,11 @@ table.stores td:last-child{font-family:var(--lat);white-space:nowrap;color:var(-
 .form label{font-weight:700;font-size:.9rem}
 .form label .req{color:#d0322f;font-size:.78rem;margin-left:6px}
 .form input,.form select,.form textarea{font-family:inherit;font-size:1rem;padding:13px 15px;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink);transition:border-color .25s}
-.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--brand)}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:var(--navy)}
 .form .note{font-size:.82rem;color:var(--ink-faint)}
 .contact-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
 .cm{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:28px 26px;text-align:center}
-.cm .big{font-family:var(--lat);font-weight:900;font-size:1.5rem;color:var(--brand-deep);margin-top:8px}
+.cm .big{font-family:var(--lat);font-weight:900;font-size:1.5rem;color:var(--navy);margin-top:8px}
 
 @media (max-width:900px){
   .grid-3,.contact-methods{grid-template-columns:1fr}
@@ -538,7 +552,7 @@ html.anim .clip.in{clip-path:inset(0 0 0% 0)}
 .news-date{font-family:var(--lat);font-size:.84rem;font-weight:700;color:var(--ink-faint);font-variant-numeric:tabular-nums;white-space:nowrap}
 .news-tag{font-size:.72rem;font-weight:700;padding:.32em .9em;border-radius:999px;white-space:nowrap;
   background:var(--pink-soft);color:var(--pink-deep);border:1px solid rgba(242,78,160,.3)}
-.news-tag.info{background:rgba(196,37,118,.07);color:var(--brand-deep);border-color:rgba(196,37,118,.2)}
+.news-tag.info{background:var(--navy-soft);color:var(--navy-deep);border-color:rgba(0,78,162,.2)}
 .news-title{font-size:.98rem;font-weight:700}
 .news-item .arw{color:var(--pink);transition:transform .3s var(--ease)}
 .news-item:hover .arw{transform:translateX(4px)}
@@ -567,8 +581,8 @@ html.anim .clip.in{clip-path:inset(0 0 0% 0)}
 
 /* エリア内の市町村リンク */
 .city-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.city-links a{font-size:.8rem;font-weight:700;color:var(--brand-deep);background:rgba(196,37,118,.06);
-  border:1px solid rgba(196,37,118,.16);padding:.36em .8em;border-radius:999px;transition:all .25s}
+.city-links a{font-size:.8rem;font-weight:700;color:var(--navy-deep);background:var(--navy-soft);
+  border:1px solid rgba(0,78,162,.16);padding:.36em .8em;border-radius:999px;transition:all .25s}
 .city-links a:hover{background:var(--pink);border-color:var(--pink);color:#fff}
 .ext::after{content:"↗";font-size:.78em;margin-left:.35em;opacity:.7}
 
@@ -613,7 +627,7 @@ html.anim .clip.in{clip-path:inset(0 0 0% 0)}
 .area-count{font-size:.74rem;font-weight:700;color:var(--pink-deep);background:var(--pink-soft);
   border:1px solid rgba(242,78,160,.3);padding:.34em .8em;border-radius:999px}
 .area-go{margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:.5em;
-  font-size:.86rem;font-weight:700;color:var(--brand)}
+  font-size:.86rem;font-weight:700;color:var(--navy)}
 .area-go .arw{transition:transform .3s var(--ease)}
 .area-link:hover .area-go .arw{transform:translateX(4px)}
 
@@ -628,15 +642,15 @@ html.anim .clip.in{clip-path:inset(0 0 0% 0)}
 /* 店舗テーブルの定休日 */
 .closed-tag{display:inline-block;margin-top:4px;font-size:.74rem;font-weight:700;color:var(--pink-deep);
   background:var(--pink-soft);border:1px solid rgba(242,78,160,.28);padding:.16em .6em;border-radius:999px}
-table.stores td a{font-family:var(--lat);font-weight:700;color:var(--brand-deep);white-space:nowrap}
+table.stores td a{font-family:var(--lat);font-weight:700;color:var(--navy);white-space:nowrap}
 table.stores td a:hover{color:var(--pink-deep)}
 
 /* ---------- Q&A ページ ---------- */
 .faq-toc{display:flex;flex-wrap:wrap;gap:10px}
-.faq-toc a{display:inline-flex;align-items:center;gap:.6em;font-size:.88rem;font-weight:700;color:var(--brand-deep);
+.faq-toc a{display:inline-flex;align-items:center;gap:.6em;font-size:.88rem;font-weight:700;color:var(--navy-deep);
   background:var(--paper);border:1px solid var(--line);padding:.6em 1.1em;border-radius:999px;transition:all .25s}
-.faq-toc a:hover{border-color:var(--brand);background:var(--brand);color:#fff}
-.faq-toc a .n{font-family:var(--lat);font-size:.72rem;background:rgba(196,37,118,.1);color:var(--brand-deep);
+.faq-toc a:hover{border-color:var(--navy);background:var(--navy);color:#fff}
+.faq-toc a .n{font-family:var(--lat);font-size:.72rem;background:var(--navy-soft);color:var(--navy-deep);
   padding:.1em .5em;border-radius:999px;transition:all .25s}
 .faq-toc a:hover .n{background:rgba(255,255,255,.25);color:#fff}
 
