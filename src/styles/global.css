@@ -113,10 +113,19 @@ html.anim .reveal.in{opacity:1;transform:none}
   position:fixed;inset:0 0 auto 0;z-index:60;
   display:flex;align-items:center;justify-content:space-between;
   gap:24px;padding:18px clamp(20px,5vw,56px);
-  transition:background .4s var(--ease),padding .4s var(--ease),box-shadow .4s var(--ease),backdrop-filter .4s;
+  transition:padding .4s var(--ease),box-shadow .4s var(--ease);
 }
+/* 背景ブラーは擬似要素に載せる。header 自身に backdrop-filter を付けると
+   fixed の子（モバイルメニュー）の包含ブロックになり、メニューが全画面化できず
+   ヘッダー高さで下が切れてしまうため。擬似要素なら nav の包含ブロックに影響しない。 */
+.site-header::before{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:rgba(245,248,252,.86);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  opacity:0;transition:opacity .4s var(--ease);
+}
+.site-header.condensed::before{opacity:1}
 .site-header.condensed{
-  background:rgba(245,248,252,.86);backdrop-filter:blur(14px);
   padding-top:12px;padding-bottom:12px;box-shadow:0 1px 0 var(--line);
 }
 /* ---------- ブランド（ロゴ＋社名） ----------
@@ -470,11 +479,10 @@ section{position:relative}
 .footer .brand{color:#fff;align-items:center}
 .footer .brand-name{border-left-color:rgba(255,255,255,.22);color:#fff}
 .footer .brand-name small{color:#A88F9C}
-/* ロゴの青文字が濃い背景に沈むため、白い台座に載せる */
-.footer .brand-plate{
-  display:inline-flex;background:#fff;border-radius:10px;padding:8px 11px;flex:0 0 auto;
-}
-.footer .brand-logo{height:30px}
+/* ロゴの「ホワイト急便」は白フチ付きで濃い背景でも視認できるため、
+   白い台座は敷かず透過で載せる（白抜きの箱に見える違和感を解消） */
+.footer .brand-plate{display:inline-flex;flex:0 0 auto}
+.footer .brand-logo{height:32px}
 .footer .brand-name{font-size:1.16rem;font-weight:900}
 .footer .lead{font-size:.86rem;margin-top:20px;max-width:34ch;line-height:1.9}
 .footer .nap{font-size:.82rem;margin-top:18px;line-height:1.9}
@@ -802,12 +810,18 @@ table.stores td a:hover{color:var(--pink-deep)}
 @media (max-width:860px){
   .nav,.header-cta .btn,.tel small{display:none}
   .nav-toggle{display:flex}
-  .site-header{background:rgba(245,248,252,.9);backdrop-filter:blur(12px)}
+  .site-header::before{opacity:1}
   .nav.open{
     display:flex;position:fixed;inset:0;z-index:70;background:var(--ground);
-    flex-direction:column;justify-content:center;gap:26px;font-size:1.3rem;padding:40px;
+    flex-direction:column;align-items:center;justify-content:flex-start;
+    gap:clamp(14px,2.4vh,26px);
+    padding:clamp(74px,9vh,96px) 24px calc(44px + env(safe-area-inset-bottom));
+    overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
   }
-  .nav.open a{font-size:1.4rem}
+  /* 収まる時は中央寄せ・溢れる時は上から表示＆スクロール（上端の見切れ防止） */
+  .nav.open a:first-of-type{margin-top:auto}
+  .nav.open a:last-of-type{margin-bottom:auto}
+  .nav.open a{font-size:clamp(1.12rem,4.4vw,1.4rem)}
   body.menu-open{overflow:hidden}
   .stats .wrap{grid-template-columns:repeat(2,1fr);gap:34px 22px}
   .stat + .stat{padding-left:0}
