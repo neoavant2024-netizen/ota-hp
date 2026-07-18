@@ -1,7 +1,11 @@
 ---
-const { heading = 'ご相談は目的に合わせてお気軽に', text = '個人のお客様の店舗検索、法人・団体のお見積り、採用へのご応募まで。まずはお気軽にご連絡ください。' } = Astro.props;
+const { heading = 'ご相談は目的に合わせてお気軽に', text = '個人のお客様の店舗検索、法人・団体のお見積り、採用へのご応募まで。まずはお気軽にご連絡ください。', mascot = 'welcome', motion = 'wave' } = Astro.props;
 ---
 <section class="band contact">
+  {mascot && (
+    <img class:list={['cta-mascot', `mascot-${motion}`]} src={`/images/mascot/${mascot}.png`}
+      alt="" aria-hidden="true" loading="lazy" decoding="async" />
+  )}
   <div class="wrap">
     <span class="eyebrow light reveal" style="justify-content:center">お問い合わせ / CONTACT</span>
     <h2 class="reveal" style="margin-top:18px">{heading}</h2>

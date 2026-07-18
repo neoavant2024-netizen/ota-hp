@@ -1,5 +1,5 @@
 ---
-const { title, sub, crumb, kana, media, alt = '' } = Astro.props;
+const { title, sub, crumb, kana, media, alt = '', mascot, motion = 'float' } = Astro.props;
 ---
 <section class:list={['page-hero', media && 'has-media']}>
   {media && <div class="bg"><img src={media} alt={alt} data-parallax fetchpriority="high" /></div>}
@@ -9,4 +9,8 @@ const { title, sub, crumb, kana, media, alt = '' } = Astro.props;
     <h1 class="reveal">{title}</h1>
     {sub && <p class="sub reveal">{sub}</p>}
   </div>
+  {mascot && (
+    <img class:list={['pagehero-mascot', `mascot-${motion}`]} src={`/images/mascot/${mascot}.png`}
+      alt="" aria-hidden="true" loading="lazy" decoding="async" />
+  )}
 </section>
