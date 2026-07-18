@@ -29,7 +29,7 @@
   --brand-deep:#8E1450;  /* 深いローズ。ホバーと濃い面に */
   --mist:#F0CFE0;        /* 薄ピンクの面 */
   --mist-soft:#F7E2EE;
-  --brass:#A87C46;       /* プレミアム仕上げ専用。ピンク一色になるのを防ぐ差し色 */
+  --brass:#A87C46;       /* ハイクラス仕上げ専用。ピンク一色になるのを防ぐ差し色 */
   --brass-soft:#C8A575;
   --pink:#F24EA0;        /* ホワイト急便グループのブランドピンク（塗り・バッジ用の鮮やかさ） */
   --pink-deep:#D62E85;
@@ -308,7 +308,18 @@ section{position:relative}
 .prem-card p{color:#DCC8D4;font-size:.94rem;margin-top:18px}
 .prem-feats{list-style:none;padding:0;margin:22px 0 0;display:flex;flex-wrap:wrap;gap:10px}
 .prem-feats li{font-size:.78rem;font-weight:700;color:#e6dcc8;border:1px solid rgba(200,165,117,.35);padding:.4em .9em;border-radius:999px}
-.prem-note{margin-top:40px;font-size:.82rem;color:#A88F9C;display:flex;gap:10px;align-items:flex-start}
+.prem-note{margin-top:28px;font-size:.82rem;color:var(--ink-faint);display:flex;gap:10px;align-items:flex-start}
+
+/* ハイクラス仕上げ（/premium の一押しフィーチャー：明るい面。ピンク×青×白で清潔感） */
+.highclass-feature{
+  background:linear-gradient(135deg,var(--navy-soft) 0%,#fff 62%);
+  border:1px solid var(--line);border-radius:22px;
+  padding:clamp(30px,5vw,58px);box-shadow:var(--shadow);position:relative;overflow:hidden;
+}
+.highclass-feature .tag{font-family:var(--lat);font-size:.7rem;font-weight:700;letter-spacing:.24em;color:var(--brand);display:inline-block}
+.highclass-feature h2{margin-top:12px}
+.highclass-feature p{color:var(--ink);font-size:1.02rem;margin-top:16px;max-width:62ch;line-height:1.95}
+.highclass-feature .prem-feats li{color:var(--navy-deep);border-color:rgba(0,78,162,.22);background:var(--navy-soft)}
 
 /* ---------- corporate (B2B) ---------- */
 .biz{background:linear-gradient(180deg,#fff,var(--ground))}
@@ -592,6 +603,17 @@ html.anim .clip.in{clip-path:inset(0 0 0% 0)}
 .news-item .arw{color:var(--pink);transition:transform .3s var(--ease)}
 .news-item:hover .arw{transform:translateX(4px)}
 .news-empty{padding:28px 6px;color:var(--ink-faint);font-size:.9rem}
+/* 過去のお知らせ（折りたたみ）。増えてもページが伸びすぎないように */
+.news-archive{margin-top:22px}
+.news-archive>summary{
+  cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:.6em;
+  font-weight:700;font-size:.9rem;color:var(--navy-deep);
+  background:var(--navy-soft);border:1px solid rgba(0,78,162,.18);
+  padding:.7em 1.3em;border-radius:999px;transition:background .25s,transform .25s}
+.news-archive>summary::-webkit-details-marker{display:none}
+.news-archive>summary::after{content:"＋";font-weight:700;color:var(--navy)}
+.news-archive[open]>summary::after{content:"−"}
+.news-archive>summary:hover{background:#dde9f7;transform:translateY(-1px)}
 
 /* セール強調カード（一覧ページ） */
 .sale-card{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 28px;

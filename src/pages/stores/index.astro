@@ -4,8 +4,7 @@ import PageHero from '../../components/PageHero.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { areas, SHOP_SEARCH } from '../../data/stores';
 
-const desc = '群馬・埼玉北部・足利のホワイト急便太田 店舗・工場案内。6つの営業エリアごとに、担当工場と営業店の営業時間・住所・電話をご案内しています。';
-const totalShops = areas.reduce((n, a) => n + a.shops.length, 0);
+const desc = '群馬・埼玉北部のホワイト急便太田 店舗・工場案内。5つの営業エリアごとに、担当工場と営業店の営業時間・住所・電話をご案内しています。';
 ---
 <Base title="店舗・工場案内" description={desc} current="stores">
 <main>
@@ -14,8 +13,8 @@ const totalShops = areas.reduce((n, a) => n + a.shops.length, 0);
     alt="コインランドリーの設備"
     crumb="店舗・工場案内"
     kana="NETWORK"
-    title="群馬・埼玉北部・足利をまるごとカバー"
-    sub="6つの営業エリアに、取次店・ショッピングセンターのテナント・コインランドリーを展開。各エリアの詳細から、担当工場と営業店の一覧をご覧いただけます。"
+    title="群馬・埼玉北部をまるごとカバー"
+    sub="5つの営業エリアに、取次店・ショッピングセンターのテナント・コインランドリーを展開。各エリアの詳細から、担当工場と営業店の一覧をご覧いただけます。"
   />
 
   <!-- エリア一覧 -->
@@ -43,7 +42,7 @@ const totalShops = areas.reduce((n, a) => n + a.shops.length, 0);
       </div>
 
       <p class="note reveal" style="margin-top:24px;font-size:.82rem;color:var(--ink-faint)">
-        ※ 掲載は{totalShops}店舗（{new Date().getFullYear()}年時点）。店舗の新設・閉店・営業時間の変更がある場合があります。最新情報は
+        ※ 店舗の新設・閉店・営業時間の変更がある場合があります。最新情報は
         <a href={SHOP_SEARCH} target="_blank" rel="noopener" style="color:var(--brand-deep);font-weight:700">ホワイト急便公式サイトの店舗検索</a>もあわせてご確認ください。
       </p>
     </div>

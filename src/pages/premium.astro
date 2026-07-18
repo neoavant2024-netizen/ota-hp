@@ -2,33 +2,32 @@
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
-const desc = 'ハイクラス・極み洗いなど、ホワイト急便太田のプレミアム仕上げ。専門工場で一点ずつ仕上げるプレミアムクリーニング。大切な一着や、落としにくい汗じみ・黄ばみのご相談を承ります。';
+const desc = 'ホワイト急便太田のハイクラス仕上げ。最高級洗剤と抗菌・防カビ加工、愛情込めた手仕上げと特別包装で、大切な一着を衛生的に美しく保ちます。専門工場で一点ずつ仕上げるプレミアムクリーニング。';
 ---
-<Base title="プレミアム仕上げ（ハイクラス・極み洗い）" description={desc} current="premium">
+<Base title="ハイクラス仕上げ" description={desc} current="premium">
 <main>
   <PageHero
     media="/images/leather.jpg"
-    alt="専門ラインで仕上げる革製品"
-    crumb="プレミアム仕上げ"
-    kana="PREMIUM"
-    title="大切な一着に特別な仕上げを"
-    sub="日常のクリーニングとは一線を画す、上質を求める方のためのメニュー。素材と風合いを守りながら、仕上がりの質を一段引き上げます。"
+    alt="専門ラインで仕上げる上質な一着"
+    crumb="ハイクラス仕上げ"
+    kana="HIGH CLASS"
+    title="大切な一着に、特別な仕上げを"
+    sub="日常のクリーニングとは一線を画す、上質を求める方のための「ハイクラス仕上げ」。素材と風合いを守りながら、仕上がりの質を一段引き上げます。"
   />
 
-  <section class="band premium" style="padding-top:clamp(40px,7vw,90px)">
+  <!-- ハイクラス（一押し） -->
+  <section class="band" style="padding-top:clamp(40px,7vw,90px)">
     <div class="wrap">
-      <div class="prem-grid">
-        <div class="prem-card reveal">
+      <div class="highclass-feature reveal">
+        <div class="hc-body">
           <span class="tag">HIGH CLASS</span>
-          <h3>ハイクラス<span class="jp">— 専門工場で一点ずつ、丁寧に</span></h3>
-          <p>ブランド衣料や礼服、思い入れのある一着を、専門の工場で手をかけて仕上げます。型崩れを抑え、生地本来の美しさと風合いを引き出す、上質を求める方のためのコースです。</p>
-          <ul class="prem-feats"><li>専門工場対応</li><li>手仕上げ</li><li>型崩れ防止</li><li>ブランド衣料</li><li>礼服・フォーマル</li></ul>
-        </div>
-        <div class="prem-card reveal">
-          <span class="tag">KIWAMI WASH</span>
-          <h3>極み洗い<span class="jp">— 汗・黄ばみ・においまで、徹底的に</span></h3>
-          <p>通常の洗いでは落としきれない汗じみや黄ばみ、においの元にアプローチ。素材への負担を抑えながら、繊維の奥までしっかり洗い上げ、清潔感のある仕上がりへ導きます。</p>
-          <ul class="prem-feats"><li>汗じみ対応</li><li>黄ばみ除去</li><li>消臭</li><li>素材にやさしい</li><li>汗をかく季節に</li></ul>
+          <h2>ハイクラス仕上げ</h2>
+          <p>最高級洗剤を使用。抗菌・防カビ加工 × 樹脂加工剤配合で衣類を衛生的に保ち、サラッと感をキープ。愛情込めた手仕上げと特別包装で、小じわ知らずのまま収納できます。</p>
+          <ul class="prem-feats">
+            <li>最高級洗剤</li><li>抗菌・防カビ加工</li><li>樹脂加工剤配合</li>
+            <li>手仕上げ</li><li>特別包装</li><li>ブランド衣料・礼服</li>
+          </ul>
+          <a class="btn btn-primary" href="/contact/" style="margin-top:28px">ハイクラス仕上げを相談する<span class="arw">→</span></a>
         </div>
       </div>
       <p class="prem-note reveal">※ 対応品目・料金は品物やコースにより異なります。詳しくはお近くの店舗へお問い合わせください。</p>
@@ -36,7 +35,7 @@ const desc = 'ハイクラス・極み洗いなど、ホワイト急便太田の
   </section>
 
   <!-- オプション加工 -->
-  <section class="band">
+  <section class="band" style="background:linear-gradient(180deg,#fff,var(--ground))">
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">オプション加工</span>
@@ -45,14 +44,14 @@ const desc = 'ハイクラス・極み洗いなど、ホワイト急便太田の
       </div>
       <div class="grid-2" style="margin-top:52px">
         <div class="card reveal">
-          <div class="ic" aria-hidden="true">💧</div>
-          <h3>汗抜き加工</h3>
-          <p>ドライクリーニングでは落としきれない汗の成分を除去します。水洗いではありませんので、生地を傷めることもありません。</p>
-        </div>
-        <div class="card reveal">
           <div class="ic" aria-hidden="true">🫧</div>
           <h3>ナチュラルウォッシュ（高級な水洗い）</h3>
-          <p>デリケートな素材にも配慮した高級な水洗いです。すっきりとした洗い上がりをお求めの方におすすめします。</p>
+          <p>ウールのジャケット・スカートなど、本来は水洗いできない品物を、特殊添加剤を使って水で洗います。水をめぐらすことで生まれる、清潔で快適な仕上がりをぜひご体験ください。</p>
+        </div>
+        <div class="card reveal">
+          <div class="ic" aria-hidden="true">💧</div>
+          <h3>汗抜き加工</h3>
+          <p>通常のドライクリーニングでは落としきれない汗の成分を、専用洗剤を加えて洗うことで洗いあがりスッキリ！ 水洗いではありませんので、生地を傷めることもありません。</p>
         </div>
         <div class="card reveal">
           <div class="ic" aria-hidden="true">🧥</div>
@@ -65,11 +64,11 @@ const desc = 'ハイクラス・極み洗いなど、ホワイト急便太田の
           <p>気になる衿まわりの黒ずみを、専用の処理ですっきりと。ハイクラス仕上げとの組み合わせも可能です。</p>
         </div>
       </div>
-      <p class="note reveal" style="margin-top:24px;font-size:.82rem;color:var(--ink-faint)">※ 料金・対象品目は品物により異なります。最新のセール情報は<a href="/news/" style="color:var(--pink-deep);font-weight:700">お知らせ・セール</a>をご覧ください。</p>
+      <p class="note reveal" style="margin-top:24px;font-size:.82rem;color:var(--ink-faint)">※ 料金・対象品目は品物により異なります。最新のセール情報は<a href="/news/" style="color:var(--navy);font-weight:700">お知らせ・セール</a>をご覧ください。</p>
     </div>
   </section>
 
-  <!-- why premium -->
+  <!-- why -->
   <section class="band">
     <div class="wrap">
       <div class="sec-head reveal">
@@ -77,13 +76,13 @@ const desc = 'ハイクラス・極み洗いなど、ホワイト急便太田の
         <h2>専門設備と技術が仕上がりを変える</h2>
       </div>
       <div class="grid-3" style="margin-top:52px">
-        <div class="card reveal"><div class="ic" aria-hidden="true">🏭</div><h3>専門工場・専用ライン</h3><p>太田第2工場のハイクラス専門設備、安中工場の皮革専用ラインなど、品物に応じた専門環境で処理します。</p></div>
+        <div class="card reveal"><div class="ic" aria-hidden="true">🏭</div><h3>専門工場・専用ライン</h3><p>太田第2工場（本部工場）のハイクラス専門設備、安中工場の皮革専用ラインなど、品物に応じた専門環境で処理します。</p></div>
         <div class="card reveal"><div class="ic" aria-hidden="true">🧵</div><h3>素材を見極める技術</h3><p>日本さわやかグループで培われた技術とノウハウで、生地や汚れに応じた最適な方法を選択します。</p></div>
         <div class="card reveal"><div class="ic" aria-hidden="true">✨</div><h3>一点ずつの手仕上げ</h3><p>大切な一着は機械任せにしません。丁寧な検品と手仕上げで、ご満足いただける仕上がりに整えます。</p></div>
       </div>
     </div>
   </section>
 
-  <CtaBand heading="プレミアム仕上げのご相談は店舗またはお電話で" text="対応品目や料金は品物により異なります。お近くの店舗、または本部までお気軽にお問い合わせください。" />
+  <CtaBand heading="ハイクラス仕上げのご相談は店舗またはお電話で" text="対応品目や料金は品物により異なります。お近くの店舗、または本部までお気軽にお問い合わせください。" />
 </main>
 </Base>

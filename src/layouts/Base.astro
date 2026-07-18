@@ -6,7 +6,7 @@ import '../styles/global.css';
 
 const {
   title,
-  description = '群馬・埼玉北部・足利のクリーニングなら、創業50余年・従業員170名のホワイト急便太田。日常の衣類から、ハイクラス・極み洗いのプレミアム仕上げ、法人・団体のユニフォーム・催事まで承ります。',
+  description = '群馬・埼玉北部のクリーニングなら、創業50余年・従業員180名のホワイト急便太田。スーツや日常の衣類から、一押しのハイクラス仕上げ、法人・団体のユニフォーム・催事まで承ります。',
   current = '',
   ogType = 'website',
 } = Astro.props;
@@ -27,15 +27,15 @@ const jsonLd = {
   description,
   address: {
     '@type': 'PostalAddress',
-    postalCode: '373-0813',
+    postalCode: '370-0426',
     addressRegion: '群馬県',
     addressLocality: '太田市',
-    streetAddress: '藤阿久町610-1',
+    streetAddress: '世良田町283-1',
     addressCountry: 'JP',
   },
   areaServed: ['群馬県', '埼玉県北部', '栃木県足利市'],
   memberOf: { '@type': 'Organization', name: '日本さわやかグループ' },
-  numberOfEmployees: { '@type': 'QuantitativeValue', value: 170 },
+  numberOfEmployees: { '@type': 'QuantitativeValue', value: 180 },
 };
 ---
 <!doctype html>

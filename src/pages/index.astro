@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { news, featuredSale } from '../data/news';
+import { areas } from '../data/stores';
 import { salePhoto } from '../lib/photos';
 const latest = news.slice(0, 3);
 // チラシ画像：news.ts の image 指定があればそれを、無ければ public/images/sale/ から自動検出
@@ -39,7 +40,7 @@ const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
         <div class="stat-sub">五十余年、地域とともに</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num"><span data-count="170">0</span><span class="u">名</span></div>
+        <div class="stat-num"><span data-count="180">0</span><span class="u">名</span></div>
         <div class="stat-label">従業員数</div>
         <div class="stat-sub">地元で働く仲間たち</div>
       </div>
@@ -49,9 +50,9 @@ const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
         <div class="stat-sub">ハイクラス・皮革の専門ライン併設</div>
       </div>
       <div class="stat reveal">
-        <div class="stat-num"><span data-count="150">0</span><span class="u">+</span></div>
-        <div class="stat-label">展開店舗</div>
-        <div class="stat-sub">営業店 約130＋コインランドリー20</div>
+        <div class="stat-num"><span data-count="10">0</span><span class="u">名+</span></div>
+        <div class="stat-label">クリーニング師</div>
+        <div class="stat-sub">国家資格者が在籍・年々増加中</div>
       </div>
     </div>
   </section>
@@ -178,13 +179,13 @@ const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
           </a>
           <a class="svc-item" href="/service/">
             <span class="idx">05</span>
-            <div><h3>コインランドリー</h3><p>群馬・埼玉北部に20店舗。いつでもご自身のペースで</p></div>
+            <div><h3>コインランドリー</h3><p>群馬・埼玉北部に展開。いつでもご自身のペースで</p></div>
             <span class="chev">→</span>
           </a>
         </div>
         <div class="svc-figure reveal">
           <img src="/images/factory/ota-1.jpg" alt="ホワイト急便太田の店舗外観" loading="lazy" />
-          <div class="cap">地域に広がる店舗ネットワーク<span>群馬・埼玉北部・足利に約150店舗</span></div>
+          <div class="cap">地域に広がる店舗ネットワーク<span>群馬・埼玉北部の暮らしのそばに</span></div>
         </div>
       </div>
     </div>
@@ -194,25 +195,19 @@ const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
   <section class="band premium" id="premium">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow dark">プレミアム仕上げ</span>
-        <h2>大切な一着に特別な仕上げを</h2>
-        <p>日常のクリーニングとは一線を画す、上質を求める方のためのメニュー。素材と風合いを守りながら、仕上がりの質を高めます。</p>
+        <span class="eyebrow dark">ハイクラス仕上げ</span>
+        <h2>大切な一着に、特別な仕上げを</h2>
+        <p>ホワイト急便の一押し「ハイクラス仕上げ」。日常のクリーニングとは一線を画す、上質を求める方のためのメニューです。</p>
       </div>
-      <div class="prem-grid">
+      <div class="prem-grid" style="grid-template-columns:1fr">
         <div class="prem-card reveal">
           <span class="tag">HIGH CLASS</span>
-          <h3>ハイクラス<span class="jp">— 専門工場で一点ずつ丁寧に</span></h3>
-          <p>ブランド衣料や礼服、思い入れのある一着を、専門の工場で手をかけて仕上げます。型崩れを抑え、生地本来の美しさを引き出します。</p>
-          <ul class="prem-feats"><li>専門工場対応</li><li>手仕上げ</li><li>型崩れ防止</li><li>ブランド衣料</li></ul>
-        </div>
-        <div class="prem-card reveal">
-          <span class="tag">KIWAMI WASH</span>
-          <h3>極み洗い<span class="jp">— 汗・黄ばみ・においまで徹底的に</span></h3>
-          <p>通常の洗いでは落としきれない汗じみや黄ばみ、においの元にアプローチ。素材への負担を抑えながら、奥までしっかり洗い上げます。</p>
-          <ul class="prem-feats"><li>汗じみ対応</li><li>黄ばみ除去</li><li>消臭</li><li>素材にやさしい</li></ul>
+          <h3>ハイクラス仕上げ<span class="jp">— 最高級洗剤と手仕上げで、衛生的に美しく</span></h3>
+          <p>最高級洗剤を使用。抗菌・防カビ加工 × 樹脂加工剤配合で衣類を衛生的に保ち、サラッと感をキープ。愛情込めた手仕上げと特別包装で、小じわ知らずのまま収納できます。</p>
+          <ul class="prem-feats"><li>最高級洗剤</li><li>抗菌・防カビ加工</li><li>樹脂加工剤配合</li><li>手仕上げ</li><li>特別包装</li></ul>
         </div>
       </div>
-      <div class="reveal" style="margin-top:36px"><a class="btn btn-brass" href="/premium/">プレミアム仕上げを詳しく<span class="arw">→</span></a></div>
+      <div class="reveal" style="margin-top:36px"><a class="btn btn-brass" href="/premium/">ハイクラス仕上げを詳しく<span class="arw">→</span></a></div>
     </div>
   </section>
 
@@ -252,7 +247,7 @@ const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
         <div class="reason reveal"><div class="n">01</div><h3>5工場ネットワーク</h3><p>群馬・埼玉に工場を分散配置。設備と物流を活かし、短納期と安定した品質を両立します。</p></div>
         <div class="reason reveal"><div class="n">02</div><h3>専門ライン</h3><p>ハイクラス専門工場と皮革専門ラインを保有。難しい品物にも一点ずつ丁寧に対応します。</p></div>
         <div class="reason reveal"><div class="n">03</div><h3>さわやかグループの技術</h3><p>全国4,500店規模の日本さわやかグループ。最新技術と長年のノウハウが品質を支えます。</p></div>
-        <div class="reason reveal"><div class="n">04</div><h3>地域密着 約130店</h3><p>商圏に広がる営業店・取次店・コインランドリー。暮らしのすぐそばでご利用いただけます。</p></div>
+        <div class="reason reveal"><div class="n">04</div><h3>地域に密着した店舗網</h3><p>商圏に広がる営業店・取次店・コインランドリー。暮らしのすぐそばでご利用いただけます。</p></div>
       </div>
     </div>
   </section>
@@ -290,23 +285,19 @@ const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
       <span class="vlabel">NETWORK</span>
       <div class="sec-head reveal">
         <span class="eyebrow">店舗・工場案内</span>
-        <h2>群馬・埼玉北部・足利をカバー</h2>
-        <p>6つの営業エリアに、取次店・ショッピングセンターのテナント・コインランドリーを展開。お近くの店舗をお選びいただけます。</p>
+        <h2>群馬・埼玉北部をまるごとカバー</h2>
+        <p>5つの営業エリアに、取次店・ショッピングセンターのテナント・コインランドリーを展開。お近くの店舗をお選びいただけます。</p>
       </div>
       <div class="areas-grid">
-        <a class="area reveal" href="/stores/"><div class="h"><h3>太田 第1エリア</h3><span>OTA 1</span></div><p>太田市・館林市・大泉町・邑楽町・足利市</p></a>
-        <a class="area reveal" href="/stores/"><div class="h"><h3>太田 第2エリア</h3><span>OTA 2</span></div><p>太田市・伊勢崎市・玉村町・大泉町・桐生市</p></a>
-        <a class="area reveal" href="/stores/"><div class="h"><h3>前橋エリア</h3><span>MAEBASHI</span></div><p>前橋市・高崎市・沼田市・渋川市・中之条町</p></a>
-        <a class="area reveal" href="/stores/"><div class="h"><h3>行田エリア</h3><span>GYODA</span></div><p>行田市・熊谷市・館林市・板倉町・明和町・千代田町</p></a>
-        <a class="area reveal" href="/stores/"><div class="h"><h3>深谷エリア</h3><span>FUKAYA</span></div><p>深谷市・本庄市・嵐山町・上里町・美里町</p></a>
-        <a class="area reveal" href="/stores/"><div class="h"><h3>安中エリア</h3><span>ANNAKA</span></div><p>安中市・高崎市・富岡市・甘楽町・藤岡市</p></a>
+        {areas.map((a) => (
+          <a class="area reveal" href={`/stores/${a.key}/`}>
+            <div class="h"><h3>{a.name}</h3><span>{a.code}</span></div>
+            <p>{a.cities.slice(0, 6).map((c) => c.n).join('・')}</p>
+          </a>
+        ))}
       </div>
       <div class="factories reveal">
-        <span class="f">太田本社工場</span>
-        <span class="f">太田第2工場（ハイクラス併設）</span>
-        <span class="f">行田第7工場</span>
-        <span class="f">深谷第9工場</span>
-        <span class="f">安中第10工場（皮革併設）</span>
+        {areas.filter((a) => a.factory).map((a) => <span class="f">{a.factory!.name}</span>)}
       </div>
     </div>
   </section>
@@ -340,7 +331,7 @@ const flyerSrc = featuredSale ? (featuredSale.image ?? salePhoto()) : undefined;
         <a class="btn line" href="/recruit/">採用に応募する</a>
       </div>
       <div class="contact-tel reveal">
-        <small>本部事務所（平日 8:00 - 17:00）</small>
+        <small>本部事務所（平日 9:00 - 17:00）</small>
         <b>0276-52-7027</b>
       </div>
     </div>
