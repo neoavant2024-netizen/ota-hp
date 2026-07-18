@@ -197,6 +197,14 @@ html.anim .reveal.in{opacity:1;transform:none}
 #ripple{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
 .hero-inner{position:relative;z-index:3;width:100%;padding-top:96px;padding-bottom:60px}
 .hero-eyebrow{margin-bottom:22px}
+/* ヒーローの大見出し（会社名）。大見出しなので濃いピンク。
+   写真の上でも沈まないよう、ごく薄い白のにじみを敷いて可読性を確保する。 */
+.hero-title{
+  color:var(--brand);font-weight:900;
+  font-size:clamp(2.4rem,6vw,5rem);line-height:1.12;letter-spacing:.03em;
+  text-wrap:balance;margin-bottom:20px;
+  text-shadow:0 2px 18px rgba(255,255,255,.55);
+}
 /* ヒーローの本文（h1）。大見出しは廃止し、控えめなリード文のみ */
 .hero .hero-lead{max-width:46ch;margin-top:8px;font-size:clamp(1.05rem,1.5vw,1.3rem);font-weight:500;
   line-height:1.95;color:var(--ink);letter-spacing:.01em}
