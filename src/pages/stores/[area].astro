@@ -109,14 +109,14 @@ const shopsLd = {
             <tbody>
               {area.shops.map((s: any) => (
                 <tr>
-                  <td style="font-weight:700">{s.name}</td>
-                  <td>
+                  <td style="font-weight:700" data-label="営業店名">{s.name}</td>
+                  <td data-label="営業時間">
                     {s.hours}
                     {s.rest && <><br /><span style="color:var(--ink-faint);font-size:.92em">{s.rest}</span></>}
                     {s.closed && <><br /><span class="closed-tag">{s.closed}</span></>}
                   </td>
-                  <td>{s.address}</td>
-                  <td><a href={`tel:${s.tel}`}>{s.tel}</a></td>
+                  <td data-label="住所">{s.address}</td>
+                  <td data-label="電話"><a href={`tel:${s.tel}`}>{s.tel}</a></td>
                 </tr>
               ))}
             </tbody>

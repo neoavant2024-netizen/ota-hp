@@ -406,6 +406,10 @@ section{position:relative}
 .footer ul a:hover{color:#fff}
 .footer .bottom{margin-top:56px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);
   display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.74rem;color:#96798A}
+/* スマホ：3カラムだと住所やメールが収まらず右が切れるため縦積みにする */
+@media (max-width:720px){
+  .footer .top{grid-template-columns:1fr;gap:34px}
+}
 
 /* ---------- generic page hero (sub pages) ---------- */
 .page-hero{position:relative;padding:150px 0 60px;background:linear-gradient(180deg,#fff,var(--ground));overflow:hidden}
@@ -466,6 +470,23 @@ table.stores th,table.stores td{text-align:left;padding:13px 16px;border-bottom:
 table.stores thead th{background:var(--ink);color:#fff;font-weight:700;position:sticky;top:0}
 table.stores tbody tr:hover{background:rgba(196,37,118,.04)}
 table.stores td:last-child{font-family:var(--lat);white-space:nowrap;color:var(--navy);font-weight:700}
+/* スマホ：横長の表は右端が切れるため、1店舗ずつのカードに組み替える（全項目が見える） */
+@media (max-width:620px){
+  .table-scroll{overflow:visible;border:0;border-radius:0;margin-top:20px}
+  table.stores{min-width:0;display:block;font-size:.94rem}
+  table.stores thead{display:none}
+  table.stores tbody{display:block}
+  table.stores tr{display:block;background:var(--paper);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;margin-bottom:14px}
+  table.stores tr:hover{background:var(--paper)}
+  table.stores td{display:block;border:0;padding:5px 0}
+  table.stores td::before{content:attr(data-label);display:block;font-size:.7rem;font-weight:700;
+    color:var(--navy);letter-spacing:.06em;margin-bottom:1px}
+  table.stores td:first-child{font-size:1.12rem;font-weight:900;color:var(--ink);
+    padding:0 0 10px;margin-bottom:6px;border-bottom:1px solid var(--line)}
+  table.stores td:first-child::before{content:none}
+  table.stores td:last-child{white-space:normal}
+}
 
 /* faq accordion-ish list */
 .faq{margin-top:44px;display:flex;flex-direction:column;gap:16px}
