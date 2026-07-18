@@ -20,7 +20,7 @@
 }
 
 :root{
-  --ground:#FBF4F8;      /* 薄いピンクを含んだ地色。ほぼ白だが温かい */
+  --ground:#F5F8FC;      /* 清潔感のある白基調（ごく淡い青み）。ピンク・青が映える */
   --paper:#FFFFFF;
   --ink:#2A1B24;         /* ダークプラム。本文はここで締める（ピンクにしない） */
   --ink-soft:#6A5561;
@@ -116,22 +116,22 @@ html.anim .reveal.in{opacity:1;transform:none}
   transition:background .4s var(--ease),padding .4s var(--ease),box-shadow .4s var(--ease),backdrop-filter .4s;
 }
 .site-header.condensed{
-  background:rgba(251,244,248,.86);backdrop-filter:blur(14px);
+  background:rgba(245,248,252,.86);backdrop-filter:blur(14px);
   padding-top:12px;padding-bottom:12px;box-shadow:0 1px 0 var(--line);
 }
 /* ---------- ブランド（ロゴ＋社名） ----------
    ロゴはホワイト急便グループのもので「太田」を含まないため、
    区切り線を挟んで社名を添え、加盟店であることと会社名の両方を示す。 */
-.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:.02em;flex:0 0 auto}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em;flex:0 0 auto}
 .brand-logo{
-  height:44px;width:auto;flex:0 0 auto;
+  height:34px;width:auto;flex:0 0 auto;
   transition:height .4s var(--ease);
 }
 /* スクロールで縮んだヘッダーでは少し小さく */
-.site-header.condensed .brand-logo{height:38px}
+.site-header.condensed .brand-logo{height:30px}
 .brand-name{
-  font-size:1rem;line-height:1.25;
-  border-left:1.5px solid var(--line);padding-left:11px;
+  font-size:1.12rem;line-height:1;font-weight:900;color:var(--ink);
+  border-left:1.5px solid var(--line);padding-left:10px;
 }
 .brand-name small{display:block;font-size:.58rem;letter-spacing:.14em;color:var(--ink-soft);font-family:var(--lat);font-weight:700;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.brand-logo{transition:none}}
@@ -140,11 +140,9 @@ html.anim .reveal.in{opacity:1;transform:none}
    （社名は必ず出す。フッターには効かせたくないのでヘッダーに限定） */
 @media (max-width:560px){
   .site-header{gap:10px;padding-left:16px;padding-right:16px}
-  .site-header .brand{gap:9px}
-  .site-header .brand-logo{height:36px}
-  .site-header .brand-name{font-size:.86rem;line-height:1.3;border-left:0;padding-left:0}
-  .site-header .brand-name .bn-g{display:block}
-  .site-header .brand-name small{display:none}
+  .site-header .brand{gap:8px}
+  .site-header .brand-logo{height:28px}
+  .site-header .brand-name{font-size:.98rem;padding-left:8px}
   /* 右側は電話番号とメニューボタンで削れないので、間隔と文字で詰める */
   .header-cta{gap:8px}
   .tel{font-size:.95rem}
@@ -173,6 +171,28 @@ html.anim .reveal.in{opacity:1;transform:none}
 .nav-toggle{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}
 .nav-toggle span{width:26px;height:2px;background:var(--ink);transition:transform .3s,opacity .3s}
 
+/* ---------- キャラクター（せんたくやくん）：ふわっと動かす ---------- */
+@keyframes mascotFloat{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-12px) rotate(1.5deg)}}
+@keyframes mascotBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.mascot-float{animation:mascotFloat 4.6s ease-in-out infinite}
+.mascot-bob{animation:mascotBob 3.4s ease-in-out infinite}
+@media (prefers-reduced-motion:reduce){.mascot-float,.mascot-bob{animation:none}}
+.hero-mascot{
+  position:absolute;right:clamp(6px,3vw,56px);bottom:0;z-index:3;
+  width:clamp(116px,17vw,240px);height:auto;pointer-events:none;
+  filter:drop-shadow(0 14px 26px rgba(12,20,40,.22));
+}
+.footer-mascot{
+  position:absolute;right:clamp(12px,6vw,80px);top:-58px;z-index:2;
+  width:clamp(92px,9vw,124px);height:auto;pointer-events:none;
+  filter:drop-shadow(0 10px 18px rgba(0,0,0,.35));
+}
+.footer{position:relative}
+@media (max-width:760px){
+  .hero-mascot{width:104px;right:4px}
+  .footer-mascot{width:78px;top:-48px;right:14px}
+}
+
 /* ---------- hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:center;overflow:hidden}
 .hero-media{position:absolute;inset:0;z-index:0;overflow:hidden}
@@ -198,8 +218,8 @@ html.anim .reveal.in{opacity:1;transform:none}
       rgba(255,255,255,.18) 64%,
       rgba(255,255,255,0) 78%),
     /* 上：ヘッダーの可読性（短く）／下：次セクションへの馴染み */
-    linear-gradient(180deg,rgba(251,244,248,.72) 0%,rgba(251,244,248,.34) 7%,rgba(251,244,248,0) 15%,
-                    rgba(251,244,248,0) 64%,rgba(251,244,248,.28) 100%)}
+    linear-gradient(180deg,rgba(245,248,252,.72) 0%,rgba(245,248,252,.34) 7%,rgba(245,248,252,0) 15%,
+                    rgba(245,248,252,0) 64%,rgba(245,248,252,.28) 100%)}
 #ripple{position:absolute;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
 .hero-inner{position:relative;z-index:3;width:100%;padding-top:96px;padding-bottom:60px}
 .hero-eyebrow{margin-bottom:22px}
@@ -402,13 +422,14 @@ section{position:relative}
 .footer{background:#1C0F16;color:#C0A6B2;padding-block:clamp(56px,8vw,90px) 30px}
 .footer .top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
 .footer .brand{color:#fff;align-items:center}
-.footer .brand-name{border-left-color:rgba(255,255,255,.22)}
+.footer .brand-name{border-left-color:rgba(255,255,255,.22);color:#fff}
 .footer .brand-name small{color:#A88F9C}
 /* ロゴの青文字が濃い背景に沈むため、白い台座に載せる */
 .footer .brand-plate{
   display:inline-flex;background:#fff;border-radius:10px;padding:8px 11px;flex:0 0 auto;
 }
-.footer .brand-logo{height:46px}
+.footer .brand-logo{height:30px}
+.footer .brand-name{font-size:1.16rem;font-weight:900}
 .footer .lead{font-size:.86rem;margin-top:20px;max-width:34ch;line-height:1.9}
 .footer .nap{font-size:.82rem;margin-top:18px;line-height:1.9}
 .footer h4{color:#fff;font-size:.82rem;letter-spacing:.16em;margin:0 0 16px;font-family:var(--lat);text-transform:uppercase}
@@ -735,7 +756,7 @@ table.stores td a:hover{color:var(--pink-deep)}
 @media (max-width:860px){
   .nav,.header-cta .btn,.tel small{display:none}
   .nav-toggle{display:flex}
-  .site-header{background:rgba(251,244,248,.9);backdrop-filter:blur(12px)}
+  .site-header{background:rgba(245,248,252,.9);backdrop-filter:blur(12px)}
   .nav.open{
     display:flex;position:fixed;inset:0;z-index:70;background:var(--ground);
     flex-direction:column;justify-content:center;gap:26px;font-size:1.3rem;padding:40px;
