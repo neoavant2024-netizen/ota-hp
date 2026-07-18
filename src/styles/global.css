@@ -360,7 +360,7 @@ section{position:relative}
 .qa p{font-size:.84rem;color:var(--ink-soft);margin-top:14px}
 
 /* ---------- contact ---------- */
-.contact{background:linear-gradient(160deg,var(--brand),var(--brand-deep));color:#fff;overflow:hidden;position:relative}
+.contact{background:linear-gradient(160deg,var(--navy),var(--navy-deep));color:#fff;overflow:hidden;position:relative}
 .contact::after{content:"";position:absolute;left:-80px;bottom:-80px;width:320px;height:320px;border-radius:50%;
   background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%)}
 .contact .wrap{position:relative;z-index:2;text-align:center;display:flex;flex-direction:column;align-items:center}
@@ -567,7 +567,7 @@ html.anim .clip.in{clip-path:inset(0 0 0% 0)}
 .sale-card p{font-size:.9rem;color:var(--ink-soft);margin-top:10px}
 
 /* 店舗検索の導線（本部サイトへ） */
-.shopsearch{background:linear-gradient(160deg,var(--brand),var(--brand-deep));color:#fff;border-radius:22px;
+.shopsearch{background:linear-gradient(160deg,var(--navy),var(--navy-deep));color:#fff;border-radius:22px;
   padding:clamp(32px,4vw,52px);position:relative;overflow:hidden;box-shadow:var(--shadow)}
 .shopsearch::after{content:"";position:absolute;right:-70px;top:-70px;width:260px;height:260px;border-radius:50%;
   background:radial-gradient(circle,rgba(242,78,160,.5),transparent 70%)}
