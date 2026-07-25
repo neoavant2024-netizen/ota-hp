@@ -189,7 +189,15 @@ function pageInit() {
   setupCanvas();
   setupParallax();
   ScrollTrigger.refresh();
-  if (lenis) { lenis.scrollTo(0, { immediate: true }); }
+  // ハッシュ付きで来たら該当セクションへ、無ければ先頭へ（ヘッダー分のオフセットを確保）
+  let hashEl = null;
+  try { if (location.hash && location.hash.length > 1) hashEl = document.querySelector(location.hash); } catch (e) { hashEl = null; }
+  if (hashEl) {
+    if (lenis) lenis.scrollTo(hashEl, { offset: -96 });
+    else hashEl.scrollIntoView();
+  } else if (lenis) {
+    lenis.scrollTo(0, { immediate: true });
+  }
 }
 
 globalInit();

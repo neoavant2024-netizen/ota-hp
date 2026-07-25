@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import CtaBand from '../components/CtaBand.astro';
 const desc = '株式会社ホワイト急便太田の会社案内。1972年創業・1977年法人設立、日本さわやかグループ加盟。従業員180名、5つの自社工場で群馬・埼玉北部を支える地域密着のクリーニング企業。';
 ---
-<Base title="会社案内" description={desc} current="">
+<Base title="会社案内" description={desc} current="company">
 <main>
   <PageHero
     media="/images/hero.jpg"
@@ -22,13 +22,13 @@ const desc = '株式会社ホワイト急便太田の会社案内。1972年創�
     <div class="wrap">
       <div class="sec-head reveal">
         <span class="eyebrow">会社概要</span>
-        <h2>ホワイト急便太田について</h2>
+        <h2>ホワイト急便太田グループについて</h2>
       </div>
       <dl class="info-table reveal">
-        <div><dt>会社名</dt><dd>株式会社ホワイト急便太田／株式会社立協製作所／株式会社ホワイト急便熊谷</dd></div>
+        <div><dt>会社名</dt><dd><ul class="co-names"><li>株式会社ホワイト急便太田</li><li>株式会社立協製作所</li><li>株式会社ホワイト急便熊谷</li></ul></dd></div>
         <div><dt>創業 / 設立</dt><dd>1972年 創業、1977年 法人設立／1987年 日本さわやかグループ加盟</dd></div>
-        <div><dt>事業内容</dt><dd>クリーニング業（衣類・皮革・布団・特殊品）、コインランドリー運営、法人・団体向けクリーニング</dd></div>
-        <div><dt>本部事務所</dt><dd>〒370-0426 群馬県太田市世良田町283-1／TEL 0276-52-7027（平日 9:00〜17:00）／info@white-ota.co.jp</dd></div>
+        <div><dt>事業内容</dt><dd><ul class="biz-list"><li>クリーニング業（一般衣類・布団類・ジュータン類・皮革類・特殊品）</li><li>コインランドリー運営</li><li>法人・団体向けのクリーニング</li></ul></dd></div>
+        <div><dt>本部事務所</dt><dd>〒370-0426 群馬県太田市世良田町283-1<br>TEL 0276-52-7027（月〜金 9:00〜17:00）<br>Mail info@white-ota.co.jp</dd></div>
         <div><dt>従業員数</dt><dd>180名</dd></div>
         <div><dt>拠点</dt><dd>クリーニング5工場・ハイクラス専門1工場・皮革専門1ライン・コインランドリー・営業店多数</dd></div>
         <div><dt>商圏</dt><dd>群馬県全域／埼玉県北部／栃木県足利市</dd></div>

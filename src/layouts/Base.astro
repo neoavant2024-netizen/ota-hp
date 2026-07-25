@@ -6,12 +6,12 @@ import '../styles/global.css';
 
 const {
   title,
-  description = '群馬・埼玉北部のクリーニングなら、創業50余年・従業員180名のホワイト急便太田。スーツや日常の衣類から、一押しのハイクラス仕上げ、法人・団体のユニフォーム・催事まで承ります。',
+  description = '群馬・埼玉北部のクリーニングなら、創業50余年・従業員180名のホワイト急便太田グループ。スーツや日常の衣類から、一押しのハイクラス仕上げ、法人・団体のユニフォーム・催事まで承ります。',
   current = '',
   ogType = 'website',
 } = Astro.props;
 
-const siteName = 'ホワイト急便 太田（株式会社ホワイト急便太田）';
+const siteName = 'ホワイト急便太田グループ（株式会社ホワイト急便太田）';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.white-ota.co.jp').href;
 const fullTitle = title ? `${title}｜${siteName}` : siteName;
 
@@ -19,7 +19,7 @@ const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'DryCleaningOrLaundry',
   name: '株式会社ホワイト急便太田',
-  alternateName: 'ホワイト急便 太田',
+  alternateName: 'ホワイト急便太田グループ',
   url: 'https://www.white-ota.co.jp/',
   telephone: '+81-276-52-7027',
   email: 'info@white-ota.co.jp',

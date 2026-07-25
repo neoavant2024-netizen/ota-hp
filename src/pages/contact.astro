@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import PageHero from '../components/PageHero.astro';
-const desc = 'ホワイト急便太田へのお問い合わせ。個人のお客様のご相談、法人・団体のお見積り、採用へのご応募まで。お電話・メール・お問い合わせフォームで承ります。';
+const desc = 'ホワイト急便太田グループへのお問い合わせ。個人のお客様のご相談、法人・団体のお見積り、採用へのご応募まで。お電話・メール・お問い合わせフォームで承ります。';
 ---
 <Base title="お問い合わせ" description={desc} current="contact">
 <main>
@@ -81,7 +81,7 @@ const desc = 'ホワイト急便太田へのお問い合わせ。個人のお客
       f.addEventListener("submit", function(e){
         e.preventDefault();
         var type = f.type.value, name = f.name.value, contact = f.contact.value, msg = f.message.value;
-        var subject = "【お問い合わせ】" + (type || "ホワイト急便太田");
+        var subject = "【お問い合わせ】" + (type || "ホワイト急便太田グループ");
         var body =
           "お問い合わせ種別：" + type + "\n" +
           "お名前／会社・団体名：" + name + "\n" +

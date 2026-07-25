@@ -112,7 +112,7 @@ html.anim .reveal.in{opacity:1;transform:none}
 .site-header{
   position:fixed;inset:0 0 auto 0;z-index:60;
   display:flex;align-items:center;justify-content:space-between;
-  gap:24px;padding:18px clamp(20px,5vw,56px);
+  gap:18px;padding:18px clamp(16px,3vw,48px);
   transition:padding .4s var(--ease),box-shadow .4s var(--ease);
 }
 /* 背景ブラーは擬似要素に載せる。header 自身に backdrop-filter を付けると
@@ -139,8 +139,8 @@ html.anim .reveal.in{opacity:1;transform:none}
 /* スクロールで縮んだヘッダーでは少し小さく */
 .site-header.condensed .brand-logo{height:30px}
 .brand-name{
-  font-size:1.12rem;line-height:1;font-weight:900;color:var(--ink);
-  border-left:1.5px solid var(--line);padding-left:10px;
+  font-size:1rem;line-height:1.15;font-weight:900;color:var(--ink);
+  border-left:1.5px solid var(--line);padding-left:10px;white-space:nowrap;
 }
 .brand-name small{display:block;font-size:.58rem;letter-spacing:.14em;color:var(--ink-soft);font-family:var(--lat);font-weight:700;white-space:nowrap}
 @media (prefers-reduced-motion:reduce){.brand-logo{transition:none}}
@@ -151,13 +151,13 @@ html.anim .reveal.in{opacity:1;transform:none}
   .site-header{gap:10px;padding-left:16px;padding-right:16px}
   .site-header .brand{gap:8px}
   .site-header .brand-logo{height:28px}
-  .site-header .brand-name{font-size:.98rem;padding-left:8px}
-  /* 右側は電話番号とメニューボタンで削れないので、間隔と文字で詰める */
+  .site-header .brand-name{font-size:.86rem;padding-left:8px}
+  /* スマホは電話番号を上部バーから外す（メニュー・フッター・ヒーローに電話あり） */
   .header-cta{gap:8px}
-  .tel{font-size:.95rem}
+  .site-header .tel{display:none}
 }
-.nav{display:flex;align-items:center;gap:18px}
-.nav a{font-size:.87rem;font-weight:700;color:var(--ink);position:relative;padding:4px 0;white-space:nowrap}
+.nav{display:flex;align-items:center;gap:14px}
+.nav a{font-size:.83rem;font-weight:700;color:var(--ink);position:relative;padding:4px 0;white-space:nowrap}
 .nav a::after{content:"";position:absolute;left:0;right:100%;bottom:-2px;height:2px;background:var(--pink);transition:right .35s var(--ease)}
 .nav a:hover::after,.nav a[aria-current="page"]::after{right:0}
 .nav a[aria-current="page"]{color:var(--pink-deep)}
@@ -519,7 +519,7 @@ section{position:relative}
 .card ul{margin:16px 0 0;padding-left:1.1em;color:var(--ink-soft);font-size:.88rem;line-height:1.9}
 
 /* detail rows: alternating text + figure */
-.detail{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(36px,6vw,64px);border-bottom:1px solid var(--line)}
+.detail{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(36px,6vw,64px);border-bottom:1px solid var(--line);scroll-margin-top:100px}
 .detail:last-child{border-bottom:0}
 .detail .fig{border-radius:18px;min-height:300px;background:linear-gradient(160deg,#F8DDEB,#E3B9D0);display:grid;place-items:center;color:#96798A;font-size:.8rem;letter-spacing:.2em;box-shadow:var(--shadow)}
 .detail.rev .txt{order:2}
@@ -542,6 +542,12 @@ section{position:relative}
 .info-table div{display:grid;grid-template-columns:200px 1fr;gap:20px;padding:20px 6px;border-bottom:1px solid var(--line)}
 .info-table dt{font-weight:700;font-size:.92rem}
 .info-table dd{margin:0;color:var(--ink-soft);font-size:.95rem}
+/* 会社名は3列で並べる（各社を同格で見せる） */
+.info-table dd .co-names{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 20px}
+.info-table dd .co-names li{font-weight:700;color:var(--ink)}
+.info-table dd .biz-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:5px}
+.info-table dd .biz-list li{position:relative;padding-left:1em}
+.info-table dd .biz-list li::before{content:"・";position:absolute;left:0;color:var(--brand)}
 
 /* history timeline */
 .timeline{margin-top:44px;border-left:2px solid var(--mist);padding-left:28px;display:flex;flex-direction:column;gap:26px}
@@ -606,6 +612,7 @@ table.stores td:last-child{font-family:var(--lat);white-space:nowrap;color:var(-
   .detail .fig{min-height:220px}
   .grid-2{grid-template-columns:1fr}
   .info-table div{grid-template-columns:1fr;gap:6px}
+  .info-table dd .co-names{grid-template-columns:1fr}
 }
 
 /* ---------- Lenis smooth scroll ---------- */
@@ -807,7 +814,9 @@ table.stores td a:hover{color:var(--pink-deep)}
   .biz-grid{grid-template-columns:1fr}
   .reasons{grid-template-columns:repeat(2,1fr)}
 }
-@media (max-width:860px){
+/* 社名を「株式会社ホワイト急便太田」に伸ばし、ナビも9項目になったため、
+   横並びナビが収まらない中間幅ではハンバーガーへ切替える（≤1280） */
+@media (max-width:1280px){
   .nav,.header-cta .btn,.tel small{display:none}
   .nav-toggle{display:flex}
   .site-header::before{opacity:1}
@@ -823,6 +832,8 @@ table.stores td a:hover{color:var(--pink-deep)}
   .nav.open a:last-of-type{margin-bottom:auto}
   .nav.open a{font-size:clamp(1.12rem,4.4vw,1.4rem)}
   body.menu-open{overflow:hidden}
+}
+@media (max-width:860px){
   .stats .wrap{grid-template-columns:repeat(2,1fr);gap:34px 22px}
   .stat + .stat{padding-left:0}
   .stat + .stat::before{display:none}
@@ -838,4 +849,4 @@ table.stores td a:hover{color:var(--pink-deep)}
   .hero-actions .btn{width:100%;justify-content:center}
 }
 .nav-close{display:none}
-@media (max-width:860px){.nav.open .nav-close{display:block;position:absolute;top:22px;right:22px;font-size:2rem;background:none;border:0;cursor:pointer;color:var(--ink)}}
+@media (max-width:1280px){.nav.open .nav-close{display:block;position:absolute;top:22px;right:22px;font-size:2rem;background:none;border:0;cursor:pointer;color:var(--ink)}}
