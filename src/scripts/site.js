@@ -190,11 +190,32 @@ function pageInit() {
   setupParallax();
   ScrollTrigger.refresh();
   // ハッシュ付きで来たら該当セクションへ、無ければ先頭へ（ヘッダー分のオフセットを確保）
-  let hashEl = null;
-  try { if (location.hash && location.hash.length > 1) hashEl = document.querySelector(location.hash); } catch (e) { hashEl = null; }
-  if (hashEl) {
-    if (lenis) lenis.scrollTo(hashEl, { offset: -96 });
-    else hashEl.scrollIntoView();
+  let hashSel = null;
+  try { if (location.hash && location.hash.length > 1 && document.querySelector(location.hash)) hashSel = location.hash; } catch (e) { hashSel = null; }
+  if (hashSel) {
+    const OFF = -90; // 固定ヘッダー分の余白
+    let active = true, ro = null;
+    const go = () => {
+      if (!active) return;
+      const el = document.querySelector(hashSel);
+      if (!el) return;
+      // 絶対Y座標を自分で算出して数値で指定する（Lenisの要素オフセット計算のズレを回避）
+      const y = Math.max(0, el.getBoundingClientRect().top + window.scrollY + OFF);
+      if (lenis) lenis.scrollTo(y, { immediate: true });
+      else window.scrollTo(0, y);
+    };
+    const stop = () => { active = false; if (ro) { try { ro.disconnect(); } catch (e) {} ro = null; } };
+    // Webフォント・画像・遅延要素の読み込みで上部の高さが変わると着地位置がずれる。
+    // レイアウトが変わるたびに位置を補正し続け、ユーザー操作か数秒経過で停止する。
+    go();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(go);
+    try { ro = new ResizeObserver(go); ro.observe(document.body); } catch (e) {}
+    window.addEventListener('load', go, { once: true });
+    setTimeout(go, 800);
+    setTimeout(go, 2000);
+    setTimeout(() => { go(); stop(); ScrollTrigger.refresh(); }, 5000);
+    ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((ev) =>
+      window.addEventListener(ev, stop, { once: true, passive: true }));
   } else if (lenis) {
     lenis.scrollTo(0, { immediate: true });
   }
