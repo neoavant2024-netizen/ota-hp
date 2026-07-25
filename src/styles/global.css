@@ -493,8 +493,9 @@ section{position:relative}
    白い台座は敷かず透過で載せる（白抜きの箱に見える違和感を解消） */
 .footer .brand-plate{display:inline-flex;flex:0 0 auto}
 .footer .brand-logo{height:32px}
-/* スマホでは長い社名が右へ見切れないよう、可変で縮小しつつ折返しも許可する */
-.footer .brand-name{font-size:clamp(.82rem,3.4vw,1.16rem);font-weight:900;white-space:normal;line-height:1.25;word-break:keep-all;overflow-wrap:anywhere}
+/* スマホでは長い社名が右へ見切れないよう、折返しはせず可変で縮小して1行に収める。
+   ヘッダー用の省略記号設定は打ち消し、フッターでは常に全表示する */
+.footer .brand-name{font-size:clamp(.76rem,3.2vw,1.16rem);font-weight:900;white-space:nowrap;overflow:visible;text-overflow:clip;flex:0 0 auto;min-width:auto}
 .footer .lead{font-size:.86rem;margin-top:20px;max-width:34ch;line-height:1.9}
 .footer .nap{font-size:.82rem;margin-top:18px;line-height:1.9}
 .footer h4{color:#fff;font-size:.82rem;letter-spacing:.16em;margin:0 0 16px;font-family:var(--lat);text-transform:uppercase}
@@ -506,6 +507,7 @@ section{position:relative}
 /* スマホ：3カラムだと住所やメールが収まらず右が切れるため縦積みにする */
 @media (max-width:720px){
   .footer .top{grid-template-columns:1fr;gap:34px}
+  .footer .brand-logo{height:28px}
 }
 
 /* ---------- generic page hero (sub pages) ---------- */
