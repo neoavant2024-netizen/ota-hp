@@ -291,6 +291,8 @@ html.anim .reveal.in{opacity:1;transform:none}
 /* 地域ラベルを2行で縦積み（1行目=地域/SINCE、2行目=エリア本部表記） */
 .hero-eyebrows{display:flex;flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:22px}
 .hero-eyebrows .hero-eyebrow{margin-bottom:0}
+/* 2行目（エリア本部表記）はピンクの線を非表示に。文字位置は1行目と揃える（線の幅ぶんの余白は保持） */
+.hero-eyebrow-nobar::before{background:transparent}
 /* ヒーローの大見出し（会社名）。大見出しなので濃いピンク。
    写真の上でも沈まないよう、ごく薄い白のにじみを敷いて可読性を確保する。 */
 .hero-title{
