@@ -14,13 +14,17 @@ const {
 const siteName = 'ホワイト急便太田グループ（株式会社ホワイト急便太田）';
 const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://www.white-ota.co.jp').href;
 const fullTitle = title ? `${title}｜${siteName}` : siteName;
+const ogImage = new URL('/images/hero-1.jpg', Astro.site ?? 'https://www.white-ota.co.jp').href;
 
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'DryCleaningOrLaundry',
   name: '株式会社ホワイト急便太田',
-  alternateName: 'ホワイト急便太田グループ',
+  legalName: '株式会社ホワイト急便太田',
+  alternateName: ['ホワイト急便太田グループ', 'ホワイト急便太田', 'ホワイト急便 太田'],
   url: 'https://www.white-ota.co.jp/',
+  logo: 'https://www.white-ota.co.jp/images/logo-h.png',
+  image: 'https://www.white-ota.co.jp/images/hero-1.jpg',
   telephone: '+81-276-52-7027',
   email: 'info@white-ota.co.jp',
   foundingDate: '1972',
@@ -36,6 +40,14 @@ const jsonLd = {
   areaServed: ['群馬県', '埼玉県北部', '栃木県足利市'],
   memberOf: { '@type': 'Organization', name: '日本さわやかグループ' },
   numberOfEmployees: { '@type': 'QuantitativeValue', value: 180 },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+81-276-52-7027',
+    email: 'info@white-ota.co.jp',
+    contactType: 'customer service',
+    areaServed: 'JP',
+    availableLanguage: 'Japanese',
+  },
 };
 ---
 <!doctype html>
@@ -56,6 +68,7 @@ const jsonLd = {
   </script>
   <title>{fullTitle}</title>
   <meta name="description" content={description} />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="canonical" href={canonical} />
   <meta name="theme-color" content="#C42576" />
   <meta name="format-detection" content="telephone=no" />
@@ -67,6 +80,9 @@ const jsonLd = {
   <meta property="og:url" content={canonical} />
   <meta property="og:locale" content="ja_JP" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:alt" content={siteName} />
+  <meta name="twitter:image" content={ogImage} />
 
   {/* 本部サイト（www.white-ex.co.jp）と同じ Noto Sans JP。約物は YakuHanJP が担当（global.css で自社設置） */}
   <link rel="preconnect" href="https://fonts.googleapis.com" />
